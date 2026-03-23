@@ -1,1 +1,22 @@
+# Dependency directories
 node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build outputs
+dist/
+client/dist/
+server/dist/
+
+# Environment variables (Viktigt för säkerhet!)
+.env
+.env.local
+.env.*.local
+
+# IDE / OS files
+.DS_Store
+.vscode/
+Thumbs.db
+
+# Test coverage
+coverage/
