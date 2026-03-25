@@ -1,0 +1,25 @@
+@use './styles/variables' as v;
+
+body {
+    margin: 0;
+    font-family: v.$font-main;
+    -webkit-font-smoothing: antialiased;
+    color: #000; // Standard textfärg, kan ändras till v.$text-color om du vill
+    background-color: v.$white;
+}
+
+button {
+    font-family: inherit;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

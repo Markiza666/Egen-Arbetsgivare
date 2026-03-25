@@ -1,0 +1,121 @@
+// src/pages/home-page/HomePage.scss
+@use '../../styles/variables' as v;
+
+.home-page {
+    .hero {
+        .hero-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+
+            .hero-img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .hero-title {
+                position: absolute;
+                background-color: v.$hero-title-bg;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 0 1rem;
+
+                color: v.$text-color;
+                font: v.$font-hero-title;
+                margin: 0;
+                padding: 1rem 0;
+                text-align: center;
+
+                span {
+                    display: block;
+                }
+
+                @media (min-width: 768px) {
+                                font: v.$font-hero-title-desktop;
+                                padding: 3rem 2rem;
+                }
+            }
+        }
+    }
+
+    .content-wrapper {
+        max-width: v.$container-max-width;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: 768px) {
+            flex-direction: row-reverse; 
+            gap: 4rem;
+            padding: 1.5rem 1rem;
+            align-items: flex-start;
+
+            .main-info {
+                flex: 1.2;
+            }
+
+            .services-grid {
+                flex: 0.8;
+            }
+        }
+    }
+
+    .main-info {
+        text-align: left;
+
+        h2 {
+            font: v.$font-h2;
+            color: v.$text-color;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: v.$text-color;
+        }
+
+        p {
+            font: v.$font-main;
+            color: v.$text-color;
+            line-height: 1.6;
+        }
+
+        a {
+            color: v.$primary-color;
+            font: v.$font-text-link;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: v.$transition;
+            cursor: pointer;
+        }
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    @media (min-width: 768px) {
+        .home-page {
+            .hero-section {
+                padding: 5rem 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+
+                .hero-content {
+                    max-width: 50%;
+                }
+            }
+
+            .services-grid {
+                max-width: 400px;
+                margin: 0;
+            }
+        }
+    }
+}

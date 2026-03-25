@@ -1,0 +1,48 @@
+@use '../../styles/variables' as v;
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: v.$primary-color;
+    z-index: 1000; // Se till att den ligger över allt annat
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .close-btn {
+        align-self: flex-end;
+        background: none;
+        border: none;
+        color: v.$white;
+        cursor: pointer;
+        margin-bottom: 2rem;
+    }
+
+    .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        a {
+            text-decoration: none;
+            color: v.$white;
+            font-size: 1.4rem;
+            font-weight: 600;
+
+            &.active {
+                color: v.$white;
+                border-left: 4px solid v.$white;
+                padding-left: 10px;
+            }
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 1rem 0;
+        }
+    }
+}

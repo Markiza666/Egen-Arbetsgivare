@@ -1,7 +1,15 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "types": ["@testing-library/jest-dom", "vitest/globals"]
+    },
+        "files": [],
+        "references": [
+            { "path": "./tsconfig.app.json" },
+            { "path": "./tsconfig.node.json" }
+    ]
 }
