@@ -1,0 +1,66 @@
+@use '../../styles/variables' as v;
+
+.accordion-item {
+    background-color: v.$white;
+    border: 1px solid #eee;
+    margin-bottom: 0.75rem;
+    border-radius: v.$border-radius;
+    transition: all 0.3s ease;
+    overflow: hidden;
+
+    // --- OPEN MODE LOGIC ---
+    &.is-open {
+        border-color: rgba(v.$primary-color, 1);
+
+        .accordion-content {
+            display: block;
+        }
+
+        .accordion-header {
+            background-color: v.$primary-color;
+            color: v.$white;
+        }
+
+        .accordion-title {
+            background-color: transparent;
+        }
+    }
+
+    // --- HEADER (button) ---
+    .accordion-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: none;
+        border: 3px solid rgba(v.$primary-color, 1);
+        cursor: pointer;
+        text-align: left;
+        font: v.$font-accordion-header;
+        color: v.$primary-color;
+    }
+
+    // --- CONTENT ---
+    .accordion-content {
+        display: none;
+        padding: 0 1.5rem 1.5rem;
+        line-height: 1.6;
+        color: v.$text-color;
+
+        .content-inner {
+            animation: fadeIn 0.4s ease;
+            
+            .btn-link {
+                margin-top: 1rem;
+                background: none;
+                border: none;
+                color: v.$primary-color;
+                text-decoration: underline;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 0;
+            }
+        }
+    }
+}

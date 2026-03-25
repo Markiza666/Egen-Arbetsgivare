@@ -1,0 +1,202 @@
+@use '../../styles/variables' as v;
+
+.site-header {
+    background-color: v.$white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+    .top-bar-container {
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    // --- TOP BAR ---
+    .top-bar {
+        background-color: v.$secondary-color;
+        padding: 0.5rem 0;
+        display: none;
+
+        @media (min-width: 768px) {
+            display: block;
+        
+            .top-bar-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .access-tools, .secondary-nav {
+            display: flex;
+            gap: 1.5rem;
+            font: v.$font-accessibility;
+            
+            button, a {
+                background: none;
+                border: none;
+                color: v.$primary-color;
+                font: v.$font-accessibility;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                cursor: pointer;
+
+                &:hover { 
+                    color: v.$hover-color;
+                    text-decoration: underline;
+                    border-bottom: 2px solid v.$hover-color; 
+                }
+            }
+        }
+    }
+
+    // --- MAIN HEADER ---
+    .main-header {
+        padding: 1rem 0;
+
+        .main-header-container {
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            gap: 1rem;
+        }
+
+        .header-top-row {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            @media (min-width: 768px) {
+                padding: 0 0 1rem 0;
+            }
+
+            // Button (Mobile)
+            .menu-btn, .search-btn {
+                flex: 0 0 60px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: none;
+                border: none;
+                color: v.$primary-color;
+                font: v.$font-accessibility;
+                cursor: pointer;
+
+                span { 
+                    font: v.$font-span;
+                }
+            }
+            
+            .logo {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+
+                @media (min-width: 768px) {
+                    justify-content: flex-start;
+                }
+
+                img {
+                    padding-left: 0;
+                    height: 40px;
+
+                    @media (min-width: 768px) {
+                        height: 50px;
+                    }
+                }
+
+                .logo-text {
+                    font: v.$font-logotype;
+                    color: v.$primary-color;
+                    padding-left: 0.8rem;
+
+                    @media (min-width: 768px) {
+                        font: v.$font-logotype-desktop
+                    }
+                }
+            }
+
+            .header-actions {
+                display: flex;
+                justify-content: flex-end;
+                flex: 0 0 auto;
+            }
+
+            .search-field-desktop {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                $search-height: 42px;
+
+                input {
+                    height: $search-height;
+                    width: 220px;
+                    padding: 0 16px;
+                    border: .5px solid v.$primary-color;
+                    border-radius: 4px;
+                    font-size: 0.95rem;
+                    outline: none;
+                    transition: border-color 0.2s;
+
+                    &:focus {
+                        border-color: v.$primary-color;
+                    }
+
+                    &::placeholder {
+                        color: #aaa;
+                    }
+                }
+
+                button {
+                    height: $search-height;
+                    padding: 0 .8rem;
+                    background-color: v.$secondary-color;
+                    color: v.$primary-color;
+                    border: none;
+                    border-radius: 4px;
+                    font: v.$font-btn;
+                    letter-spacing: 0.8px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background-color 0.2s;
+
+                    &:hover {
+                        background-color: v.$hover-color;
+                    }
+
+                    span {
+                        line-height: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    // --- DESKTOP NAV ---
+    .desktop-nav {
+        display: none;
+
+        @media (min-width: 768px) {
+            background-color: v.$secondary-color;
+            display: flex;
+            padding: 1rem;
+            gap: 1.5rem;
+
+            a {
+                text-decoration: none;
+                color: v.$primary-color;
+                font-weight: 600;
+                font-size: 0.95rem;
+
+                &:hover { 
+                    border-bottom: 2px solid v.$hover-color; 
+                }
+            }
+        }
+    }
+}

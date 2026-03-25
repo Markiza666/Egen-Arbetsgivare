@@ -1,0 +1,63 @@
+@use '../../styles/variables' as v;
+
+.accessibility-bar {
+    background-color: v.$secondary-color;
+    border-bottom: 1px solid #e9ecef;
+    padding: 0.5rem 0;
+    
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    .container {
+        display: flex;
+        gap: 1rem;
+        max-width: v.$container-max-width;
+        margin: 0 auto;
+        padding: 0 1rem;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    .access-tools, .secondary-nav {
+        display: flex;
+        gap: 1.5rem;
+        
+        a, button {
+            color: v.$text-color;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+
+            &:hover {
+                text-decoration: underline;
+                color: v.$primary-color;
+            }
+        }
+    }
+
+    .acc-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: none;
+        border: none;
+        color: v.$primary-color;
+        font: v.$font-accessibility;
+        cursor: pointer;
+
+        &:hover {
+            background-color: v.$hover-color;
+            color: v.$primary-color;
+        }
+
+        svg {
+            color: v.$primary-color;
+        }
+    }
+}
