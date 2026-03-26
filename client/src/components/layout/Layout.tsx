@@ -12,10 +12,11 @@ import Footer from '../footer/Footer';
 import AccessibilityBar from '../header/AccessibilityBar';
 import ScrollToTop from '../common/ScrollToTop';
 import RouteAnnouncer from '../common/RouteAnnouncer';
+import styles from './Layout.module.scss';
 
 const Layout: React.FC = () => {
     return (
-        <div className="app-wrapper">
+        <div className={styles.appWrapper}>
             {/* Logic for resetting scroll position */}
             <ScrollToTop />
             <RouteAnnouncer />  {/* This handles accessibility when changing pages */}
@@ -25,7 +26,7 @@ const Layout: React.FC = () => {
             <Header />
 
             {/* Unique content of the page */}
-            <main id="main-content">
+            <main id="main-content" className={styles.mainContent}>
                 <Outlet />
             </main>
 

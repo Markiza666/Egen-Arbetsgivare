@@ -1,6 +1,6 @@
 @use '../../styles/variables' as v;
 
-.page-placeholder {
+.pagePlaceholder {
     padding: 4rem 1.5rem;
     text-align: center;
     min-height: 60vh;
@@ -21,7 +21,7 @@
         line-height: 1.6;
     }
 
-    .back-link {
+    .backLink {
         margin-top: 2rem;
         color: v.$primary-color;
         font-weight: bold;

@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 
 // Mocking ScrollToTop to avoid window.scrollTo errors in JSDOM
 vi.mock('../common/ScrollToTop', () => ({
-  default: () => null
+    default: () => null
 }));
 
 describe('Layout Component', () => {

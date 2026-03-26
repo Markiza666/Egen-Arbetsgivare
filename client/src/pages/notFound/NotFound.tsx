@@ -15,11 +15,11 @@ const NotFound: React.FC<NotFoundProps> = ({
     message = "Hoppsan! Sidan du letar efter verkar ha tagit en kaffepaus. Den kan ha flyttats eller tagits bort." 
 }) => {
     return (
-        <div className="page-placeholder">
+        <div className="pagePlaceholder">
             <div className="container">
                 <h1>{title}</h1>
                 <p>{message}</p>
-                <NavLink to="/" className="back-link">
+                <NavLink to="/" className="backLink">
                     Tillbaka till startsidan
                 </NavLink>
             </div>

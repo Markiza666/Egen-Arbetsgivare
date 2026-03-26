@@ -1,6 +1,6 @@
 @use '../../styles/variables' as v;
 
-.mobile-menu-overlay {
+.mobileMenuOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
 
-    .close-btn {
+    .closeBtn {
         align-self: flex-end;
         background: none;
         border: none;
@@ -21,7 +21,7 @@
         margin-bottom: 2rem;
     }
 
-    .mobile-nav {
+    .mobileNav {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
@@ -29,8 +29,7 @@
         a {
             text-decoration: none;
             color: v.$white;
-            font-size: 1.4rem;
-            font-weight: 600;
+            font: v.$font-text-link;
 
             &.active {
                 color: v.$white;

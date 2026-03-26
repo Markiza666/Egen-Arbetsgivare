@@ -1,16 +1,16 @@
 @use '../../styles/variables' as v;
 
-.site-header {
+.siteHeader {
     background-color: v.$white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
-    .top-bar-container {
+    .topBarContainer {
         margin: 0 auto;
         padding: 0 1rem;
     }
 
     // --- TOP BAR ---
-    .top-bar {
+    .topBar {
         background-color: v.$secondary-color;
         padding: 0.5rem 0;
         display: none;
@@ -18,14 +18,14 @@
         @media (min-width: 768px) {
             display: block;
         
-            .top-bar-container {
+            .topBarContainer {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
             }
         }
 
-        .access-tools, .secondary-nav {
+        .accessTools, .secondaryNav {
             display: flex;
             gap: 1.5rem;
             font: v.$font-accessibility;
@@ -51,17 +51,17 @@
     }
 
     // --- MAIN HEADER ---
-    .main-header {
+    .mainHeader {
         padding: 1rem 0;
 
-        .main-header-container {
+        .mainHeaderContainer {
             display: flex;
             align-items: center;
             padding: 0 1rem;
             gap: 1rem;
         }
 
-        .header-top-row {
+        .headerTopRow {
             display: flex;
             width: 100%;
             justify-content: space-between;
@@ -72,7 +72,7 @@
             }
 
             // Button (Mobile)
-            .menu-btn, .search-btn {
+            .menuBtn, .searchBtn {
                 flex: 0 0 60px;
                 display: flex;
                 flex-direction: column;
@@ -108,7 +108,7 @@
                     }
                 }
 
-                .logo-text {
+                .logoText {
                     font: v.$font-logotype;
                     color: v.$primary-color;
                     padding-left: 0.8rem;
@@ -119,13 +119,13 @@
                 }
             }
 
-            .header-actions {
+            .headerActions {
                 display: flex;
                 justify-content: flex-end;
                 flex: 0 0 auto;
             }
 
-            .search-field-desktop {
+            .searchFieldDesktop {
                 display: flex;
                 align-items: center;
                 gap: 1rem;
@@ -178,7 +178,7 @@
     }
 
     // --- DESKTOP NAV ---
-    .desktop-nav {
+    .desktopNav {
         display: none;
 
         @media (min-width: 768px) {
@@ -190,8 +190,7 @@
             a {
                 text-decoration: none;
                 color: v.$primary-color;
-                font-weight: 600;
-                font-size: 0.95rem;
+                font: v.$font-text-link;
 
                 &:hover { 
                     border-bottom: 2px solid v.$hover-color; 
