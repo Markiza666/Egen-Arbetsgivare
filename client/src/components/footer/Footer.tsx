@@ -9,7 +9,7 @@
  */
 import { NavLink } from 'react-router-dom'; // Accessibility (A11y): NavLink also adds aria-current="page" to the active link, which helps screen readers tell the user where they are.
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
-import './Footer.scss';
+import styles from './Footer.module.scss';
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
@@ -20,13 +20,13 @@ const Footer: React.FC = () => {
     };
 
     return (
-        <footer className="site-footer">
-            <div className="footer-grid">
-                <section className="footer-section">
+        <footer className={styles.siteFooter}>
+            <div className={styles.footerGrid}>
+                <section className={styles.footerSection}>
                     <h3>Egen Arbetsgivare</h3>
 
                     {/* Address */}
-                    <div className="contact-item">
+                    <div className={styles.contactItem}>
                         <MapPin size={20} aria-hidden="true" />
                         <address>
                             Hälsingegatan 49<br />
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Phone - Clickable but stopped */}
-                    <div className="contact-item">
+                    <div className={styles.contactItem}>
                         <Phone size={20} aria-hidden="true" />
                         <a href="tel:0107500775" onClick={handleInactiveClick}>
                             010-750 07 75
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Email - Clickable but stopped */}
-                    <div className="contact-item">
+                    <div className={styles.contactItem}>
                         <Mail size={20} aria-hidden="true" />
                         <a href="mailto:info@egenarbetsgivare.se" onClick={handleInactiveClick}>
                             info@egenarbetsgivare.se
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
 
                 <hr />
 
-                <section className="footer-section">
+                <section className={styles.footerSection}>
                     <h3>Hitta snabbt</h3>
                     <ul>
                         <li><NavLink to="/personlig-assistans">Personlig assistans</NavLink></li>
@@ -68,9 +68,9 @@ const Footer: React.FC = () => {
 
                 <hr />
 
-                <section className="footer-section">
+                <section className={styles.footerSection}>
                     <h3>Sociala medier</h3>
-                    <div className="social-icons">
+                    <div className={styles.socialIcons}>
                         <Facebook size={24} />
                         <Instagram size={24} />
                         <Youtube size={24} />
@@ -80,14 +80,14 @@ const Footer: React.FC = () => {
 
             <hr />
 
-            <div className="footer-policy-links">
+            <div className={styles.footerPolicyLinks}>
                 <NavLink to="/policies">Våra policies</NavLink>
                 <NavLink to="/tillganglighet">Tillgänglighet</NavLink>
             </div>
 
             <hr />
 
-            <div className="footer-bottom">
+            <div className={styles.footerBottom}>
                 <p>Copyright @ {currentYear}</p>
                 <p>Egen Arbetsgivare</p>
                 <p>Uppdaterad 2026-03-23</p>

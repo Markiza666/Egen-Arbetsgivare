@@ -1,6 +1,6 @@
 @use '../../styles/variables' as v;
 
-.accordion-item {
+.accordionItem {
     background-color: v.$white;
     border: 1px solid #eee;
     margin-bottom: 0.75rem;
@@ -12,22 +12,22 @@
     &.is-open {
         border-color: rgba(v.$primary-color, 1);
 
-        .accordion-content {
+        .accordionContent {
             display: block;
         }
 
-        .accordion-header {
+        .accordionHeader {
             background-color: v.$primary-color;
             color: v.$white;
         }
 
-        .accordion-title {
+        .accordionTitle {
             background-color: transparent;
         }
     }
 
     // --- HEADER (button) ---
-    .accordion-header {
+    .accordionHeader {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -42,16 +42,16 @@
     }
 
     // --- CONTENT ---
-    .accordion-content {
+    .accordionContent {
         display: none;
         padding: 0 1.5rem 1.5rem;
         line-height: 1.6;
         color: v.$text-color;
 
-        .content-inner {
+        .contentInner {
             animation: fadeIn 0.4s ease;
             
-            .btn-link {
+            .btnLink {
                 margin-top: 1rem;
                 background: none;
                 border: none;

@@ -7,6 +7,7 @@
  */
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import styles from './RouteAnnouncer.module.scss';
 
 const RouteAnnouncer: React.FC = () => {
     const { pathname } = useLocation();
@@ -30,7 +31,7 @@ const RouteAnnouncer: React.FC = () => {
         <div 
             aria-live="assertive" 
             aria-atomic="true" 
-            className="sr-only"
+            className={styles.srOnly}
         >
             {announcement}
         </div>

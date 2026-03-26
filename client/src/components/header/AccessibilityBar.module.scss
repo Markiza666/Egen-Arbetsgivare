@@ -1,6 +1,6 @@
 @use '../../styles/variables' as v;
 
-.accessibility-bar {
+.accessibilityBar {
     background-color: v.$secondary-color;
     border-bottom: 1px solid #e9ecef;
     padding: 0.5rem 0;
@@ -22,26 +22,7 @@
         }
     }
 
-    .access-tools, .secondary-nav {
-        display: flex;
-        gap: 1.5rem;
-        
-        a, button {
-            color: v.$text-color;
-            text-decoration: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-
-            &:hover {
-                text-decoration: underline;
-                color: v.$primary-color;
-            }
-        }
-    }
-
-    .acc-btn {
+    .accBtn {
         display: flex;
         align-items: center;
         gap: 0.5rem;

@@ -12,14 +12,16 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HomePage from '../pages/home/HomePage';
-import './../pages/notFound/NotFound.scss'; // Återanvänd samma stil för 404-sidan
+import styles from '../pages/notFound/NotFound.module.scss'; // Reusing styles for the 404 placeholder
 import ServicesPage from '../pages/services/ServicesPage';
 
 const PagePlaceholder: React.FC<{ title: string }> = ({ title }) => (
-    <div className="page-placeholder">
+    <div className={styles.pagePlaceholder}>
         <h1>{title}</h1>
         <p>Denna sida är under konstruktion eller kunde inte hittas. Vi arbetar för fullt med att färdigställa innehållet.</p>
-        <NavLink to="/" className="back-link">Tillbaka till startsidan</NavLink>
+        <NavLink to="/" className={styles.backLink}>
+            Tillbaka till startsidan
+        </NavLink>
     </div>
 );
 

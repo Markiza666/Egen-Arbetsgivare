@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, Search, Globe, Volume2, BookOpen } from 'lucide-react';  // Icons for accessibility and menu
 import { NavLink } from 'react-router-dom'; // Accessibility (A11y): NavLink also adds aria-current="page" to the active link, which helps screen readers tell the user where they are.
 import Logo from '../../assets/Logo.svg';
-import './Header.scss';
+import styles from './Header.module.scss';
 import MenuMobile from '../menu/MenuMobile';
 
 const useWindowSize = () => {
@@ -42,28 +42,28 @@ const Header: React.FC = () => {
     }, [isMenuOpen]);
 
     return (
-        <header className="site-header">
+        <header className={styles.siteHeader}>
             {/* TOP BAR - Mainly displayed on Desktop */}
-            <div className="top-bar">
-                <div className="top-bar-container">
-                    <div className="access-tools">
-                        <button className="acc-btn" onClick={() => console.log('Lyssna aktiverat')} type='button'>
+            <div className={styles.topBar}>
+                <div className={styles.topBarContainer}>
+                    <div className={styles.accessTools}>
+                        <button className={styles.accBtn} onClick={() => console.log('Lyssna aktiverat')} type='button'>
                             <Volume2 size={24} />
                             <span>Lyssna</span>
                         </button>
-                        
-                        <button className="acc-btn" onClick={() => console.log('Lättläst aktiverat')} type='button'>
+
+                        <button className={styles.accBtn} onClick={() => console.log('Lättläst aktiverat')} type='button'>
                             <BookOpen size={24} />
                             <span>Lättläst</span>
                         </button>
 
-                        <button className="acc-btn" type='button'>
+                        <button className={styles.accBtn} type='button'>
                             <Globe size={18} />
                             <span>Språk</span>
                         </button>
                     </div>
                     
-                    <nav className="secondary-nav">
+                    <nav className={styles.secondaryNav}>
                         <NavLink to="/om-oss">Om oss</NavLink>
                         <NavLink to="/kontakt">Kontakta oss</NavLink>
                     </nav>
@@ -71,13 +71,13 @@ const Header: React.FC = () => {
             </div>
 
             {/* Main Header */}
-            <div className="main-header">
-                <div className="main-header-container">
-                    <div className="header-top-row">
+            <div className={styles.mainHeader}>
+                <div className={styles.mainHeaderContainer}>
+                    <div className={styles.headerTopRow}>
 
                         {/* Menu button (Mobile) */}
                         {isMobile && (
-                            <button type='button' className="menu-btn" onClick={() => setIsMenuOpen(true)}>
+                            <button type='button' className={styles.menuBtn} onClick={() => setIsMenuOpen(true)}>
                                 <Menu size={24} />
                                 <span>Meny</span>
                             </button>
@@ -86,20 +86,20 @@ const Header: React.FC = () => {
                         {/* Mobile Menu Component */}
                         <MenuMobile isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
-                        <NavLink to="/" className="logo">
+                        <NavLink to="/" className={styles.logo}>
                             <img src={Logo} alt="Egen Arbetsgivare Logotyp" />
-                            <span className="logo-text">Egen Arbetsgivare</span>
+                            <span className={styles.logoText}>Egen Arbetsgivare</span>
                         </NavLink>
                         
                         {/* Search field */}
-                        <div className="header-actions">
+                        <div className={styles.headerActions}>
                             {isMobile ? (
-                                <button className="search-btn" type='button'>
+                                <button className={styles.searchBtn} type='button'>
                                     <Search size={24} />
                                     <span>Sök</span>
                                 </button>
                             ) : (
-                                <form className="search-field-desktop">
+                                <form className={styles.searchFieldDesktop}>
                                     <input type="text" placeholder="Sök..." />
                                     <button type='button'>
                                         <span>SÖK</span>
@@ -111,7 +111,7 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* Desktop Navigation */}
-                <nav className="desktop-nav">
+                <nav className={styles.desktopNav}>
                     <NavLink to="/assistans">Personlig assistans</NavLink>
                     <NavLink to="/arbetsgivare">Bli egen arbetsgivare</NavLink>
                     <NavLink to="/kunder">Våra kunder</NavLink>

@@ -1,38 +1,32 @@
-import { render } from '@testing-library/react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import RouteAnnouncer from './RouteAnnouncer';
 import '@testing-library/jest-dom';
 
 describe('RouteAnnouncer Component', () => {
-  
+    
     test('announces the correct page title when navigating', () => {
-        const { container } = render(
-            <MemoryRouter initialEntries={['/assistans']}>
-                <Routes>
-                    <Route path="/assistans" element={<RouteAnnouncer />} />
-                </Routes>
+        // We test a subpage, e.g. /about-us
+        render(
+            <MemoryRouter initialEntries={['/om-oss']}>
+                <RouteAnnouncer />
             </MemoryRouter>
         );
 
-        // We look for the div with the sr-only class that contains our text
-        const announcement = container.querySelector('.sr-only');
-        
-        expect(announcement).toBeInTheDocument();
-        expect(announcement?.textContent).toMatch(/Navigerade till sidan: assistans/i);
+        // We look for the text "about us" (independent of upper/lower case)
+        // We also check that "Navigated to page" is included
+        expect(screen.getByText(/Navigerade till sidan/i)).toBeInTheDocument();
+        expect(screen.getByText(/om oss/i)).toBeInTheDocument();
     });
 
     test('announces "Startsida" when at the root path', () => {
-        const { container } = render(
+        render(
             <MemoryRouter initialEntries={['/']}>
-                <Routes>
-                    <Route path="/" element={<RouteAnnouncer />} />
-                </Routes>
+                <RouteAnnouncer />
             </MemoryRouter>
         );
 
-        const announcement = container.querySelector('.sr-only');
-        
-        expect(announcement).toBeInTheDocument();
-        expect(announcement?.textContent).toMatch(/Startsida/i);
+        // Check that "Homepage" is rendered
+        expect(screen.getByText(/Startsida/i)).toBeInTheDocument();
     });
 });

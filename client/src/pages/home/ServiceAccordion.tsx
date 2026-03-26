@@ -9,25 +9,25 @@
 import React, { useState } from 'react';
 import type { AccordionProps } from '../../types';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import './ServiceAccordion.scss';
+import styles from './ServiceAccordion.module.scss'
 
 const ServiceAccordion: React.FC<AccordionProps> = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={`accordion-item ${isOpen ? 'is-open' : 'is-closed'}`}>
+        <div className={styles.accordionItem}>
             <button 
-                className="accordion-header" 
+                className={styles.accordionHeader} 
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}  // Indicates the current state of the accordion (expanded or collapsed)
                 aria-controls={`accordion-content-${title.replace(/\s+/g, '-').toLowerCase()}`} // Links the button to the content panel
                 type="button"
             >
-                <span className="accordion-title">{title}</span>
+                <span className={styles.accordionTitle}>{title}</span>
                 {isOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
             </button>
             
-            <div className="accordion-content">
+            <div className={styles.accordionContent}>
                 <div className="content-inner">
                     {children}
                 </div>

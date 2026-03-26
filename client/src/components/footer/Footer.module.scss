@@ -1,10 +1,10 @@
 @use '../../styles/variables' as v;
 
-.site-footer {
+.siteFooter {
     background-color: v.$secondary-color;
     padding: 1rem;
 
-    .footer-grid {
+    .footerGrid {
         display: grid;
         grid-template-columns: 1fr;
         max-width: v.$container-max-width;
@@ -27,7 +27,7 @@
         }
     }
 
-    .footer-section {
+    .footerSection {
         margin-bottom: 1rem;
         h3 {
             font: v.$font-h3;
@@ -35,7 +35,7 @@
             color: v.$black;
         }
 
-        .contact-item {
+        .contactItem {
             display: flex;
             align-items: flex-start;
             gap: 12px;
@@ -91,7 +91,7 @@
             }
         }
 
-        .social-icons {
+        .socialIcons {
             display: flex;
             gap: 1.2rem;
             margin-top: 1rem;
@@ -109,7 +109,7 @@
         }
     }
 
-    .footer-policy-links {
+    .footerPolicyLinks {
         display: flex;
         gap: 15px;
         align-items: center;
@@ -136,7 +136,7 @@
         }
     }
     // --- FOOTER BOTTOM (Copyright & Policies) ---
-    .footer-bottom {
+    .footerBottom {
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
         font-size: 0.85rem;
@@ -150,7 +150,7 @@
             align-items: center;
         }
 
-        .policy-links {
+        .policyLinks {
             display: flex;
             justify-content: center;
             gap: 1.5rem;

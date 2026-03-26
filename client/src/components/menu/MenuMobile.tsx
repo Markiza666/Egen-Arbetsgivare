@@ -9,25 +9,25 @@
  */
 import { NavLink } from 'react-router-dom';
 import { X } from 'lucide-react';
-import './../menu/MenuMobile.scss';
+import styles from './MenuMobile.module.scss';
 import type { MenuMobileProps } from '../../types';
 
 const MenuMobile: React.FC<MenuMobileProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="mobile-menu-overlay">
-            <div className="mobile-menu-content">
+        <div className={styles.mobileMenuOverlay}>
+            <div className={styles.mobileMenuContent}>
                 <button 
                     type='button'
-                    className="close-btn" 
+                    className={styles.closeBtn} 
                     onClick={onClose} 
                     aria-label="Stäng meny"
                 >
                     <X size={32} />
                 </button>
                 
-                <nav className="mobile-nav">
+                <nav className={styles.mobileNav}>
                     <NavLink to="/" end onClick={onClose}>Hem</NavLink>
                     <NavLink to="/assistans" onClick={onClose}>Personlig assistans</NavLink>
                     <NavLink to="/arbetsgivare" onClick={onClose}>Bli egen arbetsgivare</NavLink>
