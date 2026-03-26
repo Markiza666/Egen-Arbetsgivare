@@ -7,11 +7,13 @@
  * - Maps URL paths to their respective page components (Home, Assistans, FAQ, etc.).
  * - Includes a "catch-all" wildcard route (*) to handle 404/Not Found states.
  * - Utilizes React Router's 'Outlet' mechanism for nested view rendering.
+ * *Uses nested routes to wrap pages within the main Layout.
  */
 import { Routes, Route, NavLink } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import HomePage from '../pages/home/HomePage';
 import './../pages/notFound/NotFound.scss'; // Återanvänd samma stil för 404-sidan
+import ServicesPage from '../pages/services/ServicesPage';
 
 const PagePlaceholder: React.FC<{ title: string }> = ({ title }) => (
     <div className="page-placeholder">
@@ -27,13 +29,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
                 
-                <Route path="assistans" element={<PagePlaceholder title="Personlig Assistans" />} />
-                <Route path="arbetsgivare" element={<PagePlaceholder title="Bli egen arbetsgivare" />} />
-                <Route path="kunder" element={<PagePlaceholder title="Våra kunder" />} />
-                <Route path="faq" element={<PagePlaceholder title="Frågor och svar" />} />
-                <Route path="nyheter" element={<PagePlaceholder title="Nyheter" />} />
-                <Route path="om-oss" element={<PagePlaceholder title="Om oss" />} />
-                <Route path="kontakt" element={<PagePlaceholder title="Kontakta oss" />} />
+                <Route path="tjanster" element={<ServicesPage />} />
                 
                 <Route path="*" element={<PagePlaceholder title="404 - Sidan hittades inte" />} />
             </Route>

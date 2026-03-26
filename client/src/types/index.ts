@@ -40,3 +40,11 @@ export interface NotFoundProps {
   title?: string;
   message?: string;
 }
+
+export interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  icon?: string;
+  features: string[]; // A list of points about what is included in the service
+}

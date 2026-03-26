@@ -1,20 +1,20 @@
 // src/pages/home-page/HomePage.scss
 @use '../../styles/variables' as v;
 
-.home-page {
+.homePage {
     .hero {
-        .hero-container {
+        .heroContainer {
             position: relative;
             width: 100%;
             overflow: hidden;
 
-            .hero-img {
+            .heroImg {
                 width: 100%;
                 height: auto;
                 display: block;
             }
 
-            .hero-title {
+            .heroTitle {
                 position: absolute;
                 background-color: v.$hero-title-bg;
                 bottom: 0;
@@ -40,7 +40,7 @@
         }
     }
 
-    .content-wrapper {
+    .contentWrapper {
         max-width: v.$container-max-width;
         padding: 1rem;
         display: flex;
@@ -52,17 +52,17 @@
             padding: 1.5rem 1rem;
             align-items: flex-start;
 
-            .main-info {
+            .mainInfo {
                 flex: 1.2;
             }
 
-            .services-grid {
+            .servicesGrid {
                 flex: 0.8;
             }
         }
     }
 
-    .main-info {
+    .mainInfo {
         text-align: left;
 
         h2 {
@@ -91,7 +91,7 @@
         }
     }
 
-    .services-grid {
+    .servicesGrid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -99,8 +99,8 @@
     }
 
     @media (min-width: 768px) {
-        .home-page {
-            .hero-section {
+        .homePage {
+            .heroSection {
                 padding: 5rem 2rem;
                 display: flex;
                 align-items: center;
@@ -112,10 +112,22 @@
                 }
             }
 
-            .services-grid {
+            .servicesGrid {
                 max-width: 400px;
                 margin: 0;
             }
         }
+    }
+}
+
+.readMore {
+    display: inline-block;
+    margin-top: 1rem;
+    color: v.$primary-color;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+        text-decoration: underline;
     }
 }
