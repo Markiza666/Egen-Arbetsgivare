@@ -1,0 +1,23 @@
+.servicesContainer {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.serviceCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #fff;
+    transition: transform 0.2s ease;
+
+    &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h3 {
+            color: var(--primary-color); // We use the variable color
+            margin-bottom: 1rem;
+    }
+}
