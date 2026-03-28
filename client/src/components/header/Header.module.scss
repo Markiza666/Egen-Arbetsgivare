@@ -1,24 +1,35 @@
 @use '../../styles/variables' as v;
 
 .siteHeader {
+    display: grid;
+    grid-template-columns: 1fr;
     background-color: v.$white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
-    .topBarContainer {
-        margin: 0 auto;
-        padding: 0 1rem;
+    // MOBIL: Definiera ordningen här (Main först, sen Top)
+    grid-template-areas: 
+        "main"
+        "top";
+
+    @media (min-width: 768px) {
+        // DESKTOP: Tillgänglighet först, sen logga
+        grid-template-areas: 
+            "top"
+            "main";
     }
-
+    
     // --- TOP BAR ---
     .topBar {
+        grid-area: top;
         background-color: v.$secondary-color;
         padding: 0.5rem 0;
-        display: none;
 
         @media (min-width: 768px) {
             display: block;
         
             .topBarContainer {
+                padding-right: 1rem;
+                margin: 0 auto;
+                max-width: v.$container-max-width;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -52,12 +63,13 @@
 
     // --- MAIN HEADER ---
     .mainHeader {
-        padding: 1rem 0;
+        grid-area: main;
+        padding: .5rem 0 1rem 0;
 
         .mainHeaderContainer {
             display: flex;
             align-items: center;
-            padding: 0 1rem;
+            padding: 0;
             gap: 1rem;
         }
 
@@ -68,7 +80,7 @@
             align-items: center;
 
             @media (min-width: 768px) {
-                padding: 0 0 1rem 0;
+                padding: 1rem 0;
             }
 
             // Button (Mobile)

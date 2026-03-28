@@ -9,7 +9,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import AccessibilityBar from '../header/AccessibilityBar';
 import ScrollToTop from '../common/ScrollToTop';
 import RouteAnnouncer from '../common/RouteAnnouncer';
 import styles from './Layout.module.scss';
@@ -20,9 +19,7 @@ const Layout: React.FC = () => {
             {/* Logic for resetting scroll position */}
             <ScrollToTop />
             <RouteAnnouncer />  {/* This handles accessibility when changing pages */}
-            
-            {/* Global elements that are always visible */}
-            <AccessibilityBar />
+
             <Header />
 
             {/* Unique content of the page */}

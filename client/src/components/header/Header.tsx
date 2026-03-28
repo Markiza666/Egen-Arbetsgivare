@@ -8,11 +8,12 @@
  * - Implements a body-scroll lock when the mobile overlay is active.
  */
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, Globe, Volume2, BookOpen } from 'lucide-react';  // Icons for accessibility and menu
+import { Menu, Search } from 'lucide-react';  // Icons for accessibility and menu
 import { NavLink } from 'react-router-dom'; // Accessibility (A11y): NavLink also adds aria-current="page" to the active link, which helps screen readers tell the user where they are.
 import Logo from '../../assets/Logo.svg';
 import styles from './Header.module.scss';
 import MenuMobile from '../menu/MenuMobile';
+import AccessibilityBar from './AccessibilityBar';
 
 const useWindowSize = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -43,30 +44,19 @@ const Header: React.FC = () => {
 
     return (
         <header className={styles.siteHeader}>
-            {/* TOP BAR - Mainly displayed on Desktop */}
+            {/* TOP BAR - Accessibility and Secondary links */}
+            {/* We place the AccessibilityBar here. On Mobile, our CSS will move this below the Main Header.
+            */}
             <div className={styles.topBar}>
                 <div className={styles.topBarContainer}>
-                    <div className={styles.accessTools}>
-                        <button className={styles.accBtn} onClick={() => console.log('Lyssna aktiverat')} type='button'>
-                            <Volume2 size={24} />
-                            <span>Lyssna</span>
-                        </button>
-
-                        <button className={styles.accBtn} onClick={() => console.log('Lättläst aktiverat')} type='button'>
-                            <BookOpen size={24} />
-                            <span>Lättläst</span>
-                        </button>
-
-                        <button className={styles.accBtn} type='button'>
-                            <Globe size={18} />
-                            <span>Språk</span>
-                        </button>
-                    </div>
+                    <AccessibilityBar /> 
                     
-                    <nav className={styles.secondaryNav}>
-                        <NavLink to="/om-oss">Om oss</NavLink>
-                        <NavLink to="/kontakt">Kontakta oss</NavLink>
-                    </nav>
+                    {!isMobile && (
+                        <nav className={styles.secondaryNav}>
+                            <NavLink to="/om-oss">Om oss</NavLink>
+                            <NavLink to="/kontakt">Kontakta oss</NavLink>
+                        </nav>
+                    )}
                 </div>
             </div>
 
