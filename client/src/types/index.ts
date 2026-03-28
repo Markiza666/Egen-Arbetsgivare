@@ -45,6 +45,22 @@ export interface ServiceItem {
   id: string;
   title: string;
   description: string;
+  path: string,
   icon?: string;
   features: string[]; // A list of points about what is included in the service
+}
+
+export interface TestimonialProps {
+  quote: string;
+  author: string;
+  subline: string;
+}
+
+export interface RegistrationStep {
+    id: string;
+    title: string;
+    content: string;
+    points: string[];
+    buttonText: string;
+    linkPath: string;    
 }

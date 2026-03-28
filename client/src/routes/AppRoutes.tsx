@@ -14,6 +14,7 @@ import Layout from '../components/layout/Layout';
 import HomePage from '../pages/home/HomePage';
 import styles from '../pages/notFound/NotFound.module.scss'; // Reusing styles for the 404 placeholder
 import ServicesPage from '../pages/services/ServicesPage';
+import BecomingEmployerPage from '../pages/become-employer/BecomingEmployerPage';
 
 const PagePlaceholder: React.FC<{ title: string }> = ({ title }) => (
     <div className={styles.pagePlaceholder}>
@@ -32,6 +33,8 @@ const AppRoutes: React.FC = () => {
                 <Route index element={<HomePage />} />
                 
                 <Route path="tjanster" element={<ServicesPage />} />
+
+                <Route path="bli-egen-arbetsgivare" element={<BecomingEmployerPage />} />
                 
                 <Route path="*" element={<PagePlaceholder title="404 - Sidan hittades inte" />} />
             </Route>

@@ -1,0 +1,28 @@
+@use '../../styles/variables' as v;
+
+.testimonialContainer {
+    background-color: #E9F5FF;
+    padding: 0 1rem 1rem;
+    border-radius: 0 8px 8px 0;
+
+    .blockquote {
+        margin: 0;
+        font: v.$font-citat;
+
+        p {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .author {
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .subline {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    }
+}

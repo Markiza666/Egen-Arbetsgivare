@@ -113,7 +113,7 @@ const Header: React.FC = () => {
                 {/* Desktop Navigation */}
                 <nav className={styles.desktopNav}>
                     <NavLink to="/assistans">Personlig assistans</NavLink>
-                    <NavLink to="/arbetsgivare">Bli egen arbetsgivare</NavLink>
+                    <NavLink to="/bli-egen-arbetsgivare">Bli egen arbetsgivare</NavLink>
                     <NavLink to="/kunder">Våra kunder</NavLink>
                     <NavLink to="/faq">Frågor och svar</NavLink>
                     <NavLink to="/nyheter">Nyheter</NavLink>
