@@ -1,4 +1,3 @@
-// src/pages/home-page/HomePage.scss
 @use '../../styles/variables' as v;
 
 .homePage {
@@ -33,8 +32,8 @@
                 }
 
                 @media (min-width: 768px) {
-                                font: v.$font-hero-title-desktop;
-                                padding: 3rem 2rem;
+                    font: v.$font-hero-title-desktop;
+                    padding: 3rem 2rem;
                 }
             }
         }
@@ -73,10 +72,11 @@
 
         h3 {
             color: v.$text-color;
+            font: v.$font-text;
         }
 
         p {
-            font: v.$font-main;
+            font: v.$font-text;
             color: v.$text-color;
             line-height: 1.6;
         }

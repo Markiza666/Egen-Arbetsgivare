@@ -1,0 +1,74 @@
+@use '../../styles/variables' as v;
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+
+    .sectionLabel {
+        font: v.$font-label;
+    }
+
+    .requiredStar {
+        color: #ff0000;
+    }
+
+    .inputGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+            font: v.$font-label;
+        }
+
+        input, textarea {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+
+            &:focus {
+                outline: 2px solid v.$primary-color;
+                border-color: transparent;
+            }
+        }
+    }
+
+    .checkboxSection{
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .radioSection {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+.submitBtn {
+    background-color: v.$primary-color;
+    width: fit-content;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+
+    &:hover {
+        background-color: lighten(v.$primary-color, 10%);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}

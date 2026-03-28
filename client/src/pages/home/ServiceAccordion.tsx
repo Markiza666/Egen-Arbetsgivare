@@ -14,13 +14,16 @@ import styles from './ServiceAccordion.module.scss'
 const ServiceAccordion: React.FC<AccordionProps> = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(false);
 
+    // Skapa en dynamisk klass-sträng
+    const itemClass = `${styles.accordionItem} ${isOpen ? styles['is-open'] : ''}`;
+
     return (
-        <div className={styles.accordionItem}>
+        <div className={itemClass}>
             <button 
                 className={styles.accordionHeader} 
                 onClick={() => setIsOpen(!isOpen)}
-                aria-expanded={isOpen}  // Indicates the current state of the accordion (expanded or collapsed)
-                aria-controls={`accordion-content-${title.replace(/\s+/g, '-').toLowerCase()}`} // Links the button to the content panel
+                aria-expanded={isOpen}
+                aria-controls={`accordion-content-${title.replace(/\s+/g, '-').toLowerCase()}`}
                 type="button"
             >
                 <span className={styles.accordionTitle}>{title}</span>
@@ -28,7 +31,8 @@ const ServiceAccordion: React.FC<AccordionProps> = ({ title, children }) => {
             </button>
             
             <div className={styles.accordionContent}>
-                <div className="content-inner">
+                {/* Här ändrade jag till styles.contentInner för att matcha din SCSS */}
+                <div className={styles.contentInner}>
                     {children}
                 </div>
             </div>

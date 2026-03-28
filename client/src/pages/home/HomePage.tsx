@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
                                 {service.features.map((f, i) => <li key={i}>{f}</li>)}
                             </ul>
 
-                            <NavLink to={`/tjanster/${service.id}`} className={styles.readMore}>
+                            <NavLink to={service.path || `/tjanster/${service.id}`} className={styles.readMore}>
                                 Läs mer om {service.title}
                             </NavLink>
                         </ServiceAccordion>

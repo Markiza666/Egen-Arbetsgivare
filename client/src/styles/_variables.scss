@@ -2,9 +2,9 @@
 $primary-color: #000183;
 $secondary-color: #FFE8DD;
 $hover-color: #6e2e8c3d;
-$text-color: #333;
+$text-color: #1f1f1f;
 $white: #ffffff;
-$black: #000000;
+$black: #090909;
 $border-radius: 8px;
 $transition: all 0.3s ease;
 $hero-title-bg: #e8f3ffef;
@@ -22,7 +22,12 @@ $font-accessibility: bold 16px/25.6px 'Arial', sans-serif;
 $font-h3: bold 24px/28px 'Alwyn', sans-serif;
 $font-span: bold 16px/24px 'Arial', sans-serif;
 $font-btn: bold 20px/24px 'Roboto', sans-serif;
-$font-text-link: bold 18px/28px 'Arial', sans-serif;
+$font-text-link: bold 18px/28.8px 'Arial', sans-serif;
+$font-text: 1rem/1.5rem 'Roboto', sans-serif;
+$font-breadcrumbs: normal 14px/22px 'Arial', sans-serif;
+$font-citat: normal 18px/28px 'Arial', sans-serif;
+$fon-subtitle: bold 24px/28.8px 'Arial', sans-serif;
+$font-label: bold 14px 'Arial', sans-serif;
 
 // Layout
 $container-max-width: 1200px;

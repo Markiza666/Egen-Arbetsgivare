@@ -12,11 +12,12 @@
     h1 {
         color: v.$primary-color;
         margin-bottom: 1rem;
-        font-size: 2.5rem;
+        font: v.$font-h2;
     }
 
     p {
         color: v.$text-color;
+        font: v.$font-text;
         max-width: 600px;
         line-height: 1.6;
     }
@@ -24,7 +25,7 @@
     .backLink {
         margin-top: 2rem;
         color: v.$primary-color;
-        font-weight: bold;
+        font: v.$font-accessibility;
         text-decoration: none;
 
         &:hover {
