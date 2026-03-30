@@ -1,0 +1,8 @@
+POST http://localhost:5001/api/contact
+Content-Type: application/json
+
+{
+    "name": "Markiza",
+    "email": "test@test.se",
+    "message": "Det här fungerar från REST Client!"
+}

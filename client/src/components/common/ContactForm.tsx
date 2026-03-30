@@ -38,12 +38,37 @@ const ContactForm: React.FC = () => {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.gdprConsent) return; // Security check
-        console.log('Form submitted:', formData);
-        setSubmitted(true);
-    };
+
+        try {
+            // Connecting frontend to backend
+            const response = await fetch('http://localhost:5001/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message 
+                    // Om din backend bara tar emot name, email, message så skickar vi bara de.
+                }),
+            });
+
+            if (response.ok) {
+                console.log('Data sparad i databasen!');
+                setSubmitted(true);
+            } else {
+                console.error('Servern svarade med ett fel');
+            }
+        } catch (error) {
+            console.error('Kunde inte nå servern:', error);
+        }
+            console.log('Form submitted:', formData);
+            setSubmitted(true);
+        };
 
     const handleReset = () => {
         setFormData(initialFormState);

@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import Contact from './models/Contact';
 
 // Configure environment variables
 dotenv.config();
@@ -35,6 +36,38 @@ app.get('/api/health', (req: Request, res: Response) => {
         message: 'The server is awake and doing well!',
         timestamp: new Date().toISOString()
     });
+});
+
+// POST: Submit a contact request
+app.post('/api/contact', async (req, res) => {
+    try {
+        const { name, email, message } = req.body;
+
+        // Create a new document based on our model
+        const newContact = new Contact({
+            name,
+            email,
+            message
+    });
+
+    // Save to MongoDB
+    await newContact.save();
+
+    res.status(201).json({ message: 'Request saved!', data: newContact });
+    } catch (error) {
+        console.error('Internal server error:', error);
+        res.status(500).json({ message: 'Something went wrong while saving.' });
+    }
+});
+
+// GET: Get all contacts (good for testing)
+app.get('/api/contact', async (req, res) => {
+    try {
+        const contacts = await Contact.find();
+        res.json(contacts);
+    } catch (error) {
+        res.status(500).json({ message: 'Could not get contacts.' });
+    }
 });
 
 // Start the server
