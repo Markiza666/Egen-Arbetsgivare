@@ -36,9 +36,6 @@ const AppRoutes: React.FC = () => {
                 <Route path="tjanster" element={<ServicesPage />} />
 
                 <Route path="bli-egen-arbetsgivare" element={<BecomingEmployerPage />} />
-
-                {/* New route for the step-by-step registration guide */}
-                <Route path="/bli-egen-arbetsgivare/steg-for-steg" element={<RegistrationGuide />} />
                 
                 <Route path="*" element={<PagePlaceholder title="404 - Sidan hittades inte" />} />
 
