@@ -7,10 +7,7 @@
     max-width: 400px;
     margin: 0 auto;
     text-align: left;
-
-    .sectionLabel {
-        font: v.$font-label;
-    }
+    
 
     .requiredStar {
         color: #ff0000;
@@ -46,9 +43,14 @@
     }
 
     .radioSection {
+        font: v.$font-text;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    .consentSection, .checkboxSection {
+        font: v.$font-text;
     }
 }
 
@@ -65,7 +67,7 @@
     transition: transform 0.1s, background-color 0.2s;
 
     &:hover {
-        background-color: lighten(v.$primary-color, 10%);
+        background-color: v.$primary-color;
     }
 
     &:active {
