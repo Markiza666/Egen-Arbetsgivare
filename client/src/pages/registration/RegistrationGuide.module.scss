@@ -1,0 +1,133 @@
+@use '../../styles/variables' as v;
+
+h2 {
+    font: v.$font-h2;
+}
+
+h3 {
+    font: v.$font-text-link;
+}
+
+p, .stepInfo {
+    font: v.$font-text;
+}
+
+a, .inlineLink {
+    font: v.$font-text-link;
+    color: v.$primary-color;
+    text-decoration: none;
+}
+
+.pageWrapper {
+    margin: 0 auto;
+    padding: 1rem;
+
+    @media (min-width: 768px) {
+        max-width: 1200px;
+    }
+
+    .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: .2rem;
+            padding: 1rem;
+
+            a {
+                font: v.$font-breadcrumbs;
+                text-decoration-line: none;
+            }
+
+            span {
+                font: v.$font-breadcrumbs;
+                color: v.$primary-color;
+                &::before {
+                    content: '→';
+                    margin-right: 4px;
+                    color: #7d7d7d;
+                    font-weight: normal;
+                }
+            }
+        }
+    .hero {
+        .heroContainer {
+            width: 100%;
+            overflow: hidden;
+
+            .heroImg {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    // padding: 0 1rem 1rem;
+        
+    .stepper {
+        display: flex;
+        flex-direction: column;
+
+        .stepCard {
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+
+            ul {
+                margin: 0;
+                padding-left: 1rem;
+            }
+
+            .stepBadge {
+                font: bold 18px 'Arial', sans-serif;
+                color:  #1f1f1f;
+            }
+
+            .timeTag {
+                display: inline-block;
+                font: v.$font-timeTag;
+                color: #1d0000;
+            }
+        }
+    }
+}
+
+.formSection {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.flexWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 5rem;
+    }
+}
+
+.topFlexWrapper, .bottomFlexWrapper {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+        align-items: flex-start;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .bottomFlexWrapper {
+        padding-top: 5rem;
+    }
+}

@@ -11,7 +11,6 @@ h2 {
 .pageContainer {
     margin: 0 auto;
     padding: 1rem;
-    font-family: 'Inter', sans-serif;
 
     @media (min-width: 768px) {
         max-width: 1200px;
@@ -21,7 +20,7 @@ h2 {
         display: flex;
         align-items: center;
         gap: .2rem;
-        padding-bottom: 1rem;
+        padding: 1rem;
 
         a {
             font: v.$font-breadcrumbs;
@@ -61,7 +60,7 @@ h2 {
 
         .responsibilities {
             .respbold {
-                font: v.$fon-subtitle;
+                font: v.$font-subtitle;
             }
 
             ul {
@@ -128,15 +127,12 @@ h2 {
     flex-direction: column;
 
     @media (min-width: 768px) {
-            align-items: flex-start;
-            .bottomFlexWrapper {
-                padding-top: 1rem;
-            }
+        align-items: flex-start;
     }
 }
 
 @media (min-width: 768px) {
-            .bottomFlexWrapper {
-                padding-top: 5rem;
-            }
+    .bottomFlexWrapper {
+        padding-top: 5rem;
     }
+}

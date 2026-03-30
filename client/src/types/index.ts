@@ -64,3 +64,19 @@ export interface RegistrationStep {
     buttonText: string;
     linkPath: string;    
 }
+
+export interface StepProps {
+    number: number;
+    title: string;
+    description: string;
+    estimate: string;
+}
+
+export interface Step {
+  number: number;
+  title: string;
+  description: string;
+  estimate: string;
+  link?: string;
+  subLink?: { text: string; url: string };
+}
