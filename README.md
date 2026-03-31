@@ -35,6 +35,7 @@ A modern full-stack web application designed to simplify the process of becoming
 - **React Testing Library** (User-centric UI testing)
 - **ESLint** (Code quality and linting)
 
+
 ## 📁 Project Structure
 
 ```text
@@ -47,12 +48,15 @@ src/
 ├── routes/         # Routing configuration (AppRoutes.tsx)
 ├── styles/         # Global styles and SCSS variables
 └── types/          # TypeScript definitions and interfaces
+```
 
-⚙️ Getting Started
+
+## ⚙️ Getting Started
+
 This project is divided into two main directories: client and server. You need to start both to run the full application.
 
-1. Server Setup
-Bash
+### 1. Server Setup
+```bash
 # Navigate to server directory
 cd server
 
@@ -61,8 +65,11 @@ npm install
 
 # Start development server with tsx watch
 npm run dev
-2. Client Setup
-Bash
+```
+
+
+### 2. Client Setup
+```bash
 # Navigate to client directory
 cd client
 
@@ -71,7 +78,11 @@ npm install
 
 # Start Vite development server
 npm run dev
-🧪 Testing
-Both the client and server use Vitest. To run the test suites, navigate to the respective directory and run:
+```
 
-Bash
+## 🧪 Testing
+
+Both the client and server use Vitest. To run the test suites, navigate to the respective directory and run:
+```bash
+npm test
+```
