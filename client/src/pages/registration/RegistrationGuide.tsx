@@ -13,7 +13,7 @@ const RegistrationGuide: React.FC = () => {
             <nav className={styles.breadcrumbs}>
                 <a href="/">Hem</a>
                 <span>Bli egen arbetsgivare</span>
-                <span>Bli egen arbetsgivare</span>
+                <span>Steg för steg</span>
             </nav>
 
             {/* Hero Section */}
@@ -26,7 +26,7 @@ const RegistrationGuide: React.FC = () => {
             <main className={styles.container}>
                 <div className={styles.flexWrapper}>
                     <div className={styles.topFlexWrapper}>
-                        <h2>Steg för steg guid</h2>
+                        <h2>Steg för steg guide</h2>
                         <h3>Såhär registrerar du dig som egen arbetsgivare</h3>
                         <section className={styles.stepper}>
                             {registrationSteps.map((step) => (

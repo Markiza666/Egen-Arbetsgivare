@@ -5,7 +5,8 @@ h2 {
 }
 
 h3 {
-    font: v.$font-text-link;
+    font: v.$font-btn;
+    margin: 0;
 }
 
 p, .stepInfo {
@@ -19,18 +20,23 @@ a, .inlineLink {
 }
 
 .pageWrapper {
+    width: 100%;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 
     @media (min-width: 768px) {
-        max-width: 1200px;
+        max-width: v.$container-max-width;
+        padding: 0 1rem 1rem;
     }
 
     .breadcrumbs {
             display: flex;
             align-items: center;
             gap: .2rem;
-            padding: 1rem;
+            padding: 0 0 1rem 1rem;
 
             a {
                 font: v.$font-breadcrumbs;
@@ -48,6 +54,7 @@ a, .inlineLink {
                 }
             }
         }
+
     .hero {
         .heroContainer {
             width: 100%;
@@ -106,7 +113,7 @@ a, .inlineLink {
 .flexWrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 3rem;
+    padding: 0 1rem;
 
     @media (min-width: 768px) {
         flex-direction: row;

@@ -1,14 +1,11 @@
 @use '../../styles/variables' as v;
 
 .accessibilityBar {
-    border-bottom: 1px solid #e9ecef;
-
     .container {
         display: flex;
         gap: 1rem;
         max-width: v.$container-max-width;
         margin: 0 auto;
-        padding: 0 1rem;
     }
 
     .accBtn {

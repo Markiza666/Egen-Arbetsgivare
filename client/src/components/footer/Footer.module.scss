@@ -1,13 +1,22 @@
 @use '../../styles/variables' as v;
 
 .siteFooter {
-    background-color: v.$secondary-color;
+    box-sizing: border-box;
+    width: 100%;
     padding: 1rem;
 
+    @media (min-width: 768px) {
+        padding: 1rem;
+        margin: auto;
+        max-width: v.$container-max-width;
+    }
+
     .footerGrid {
+        background-color: v.$secondary-color;
         display: grid;
         grid-template-columns: 1fr;
         max-width: v.$container-max-width;
+        padding-left: 1rem;
         margin: 0 auto;
 
         hr {
@@ -21,6 +30,7 @@
         @media (min-width: 768px) {
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            padding: 1rem;
                 hr {
                     display: none;
                 }

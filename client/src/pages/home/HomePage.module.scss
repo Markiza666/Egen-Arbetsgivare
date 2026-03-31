@@ -1,6 +1,18 @@
 @use '../../styles/variables' as v;
 
 .homePage {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        max-width: v.$container-max-width;
+        padding: 0 1rem 1rem;
+    }
+    
     .hero {
         .heroContainer {
             position: relative;
