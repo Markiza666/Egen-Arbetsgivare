@@ -47,3 +47,31 @@ src/
 ├── routes/         # Routing configuration (AppRoutes.tsx)
 ├── styles/         # Global styles and SCSS variables
 └── types/          # TypeScript definitions and interfaces
+
+⚙️ Getting Started
+This project is divided into two main directories: client and server. You need to start both to run the full application.
+
+1. Server Setup
+Bash
+# Navigate to server directory
+cd server
+
+# Install dependencies
+npm install
+
+# Start development server with tsx watch
+npm run dev
+2. Client Setup
+Bash
+# Navigate to client directory
+cd client
+
+# Install dependencies
+npm install
+
+# Start Vite development server
+npm run dev
+🧪 Testing
+Both the client and server use Vitest. To run the test suites, navigate to the respective directory and run:
+
+Bash
