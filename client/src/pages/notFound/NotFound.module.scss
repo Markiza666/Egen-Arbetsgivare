@@ -1,13 +1,21 @@
 @use '../../styles/variables' as v;
 
 .pagePlaceholder {
-    padding: 4rem 1.5rem;
+    width: 100%;
+    padding: 4rem 1rem;
+    margin: 0 auto;
     text-align: center;
     min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    
+    @media (min-width: 768px) {
+        max-width: v.$container-max-width;
+        padding: 1rem;
+    }
 
     h1 {
         color: v.$primary-color;

@@ -9,18 +9,23 @@ h2 {
 }
 
 .pageContainer {
+    width: 100%;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 
     @media (min-width: 768px) {
-        max-width: 1200px;
+        max-width: v.$container-max-width;
+        padding: 0 1rem 1rem;
     }
 
     .breadcrumbs {
         display: flex;
         align-items: center;
         gap: .2rem;
-        padding: 1rem;
+        padding: 0 0 1rem 1rem;
 
         a {
             font: v.$font-breadcrumbs;
@@ -49,6 +54,9 @@ h2 {
                 height: auto;
                 display: block;
             }
+            @media (min-width: 768px) {
+                box-sizing: border-box;
+            }
         }
     }
 
@@ -58,6 +66,9 @@ h2 {
         gap: 1rem;
         font: v.$font-text;
 
+        .introText, .responsibilities,.registrationStep, .contactIntro, .formSection {
+            padding: 0 1rem;
+        }
         .responsibilities {
             .respbold {
                 font: v.$font-subtitle;
@@ -115,6 +126,7 @@ h2 {
     margin-bottom: 3rem;
 
     @media (min-width: 768px) {
+        max-width: v.$container-max-width;
         flex-direction: row;
         align-items: flex-start;
         gap: 5rem;

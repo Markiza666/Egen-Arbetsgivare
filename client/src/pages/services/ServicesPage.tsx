@@ -21,7 +21,6 @@ const ServicesPage: React.FC = () => {
                         <h2>{service.title}</h2>
                         <p className={styles.lead}>{service.description}</p>
                         <div className={styles.content}>
-                            {/* Här kan du lägga till mer text senare som bara syns här */}
                             <p>Vi på Egen Arbetsgivare brinner för att {service.title} ska vara enkelt för dig...</p>
                         </div>
                     </section>
