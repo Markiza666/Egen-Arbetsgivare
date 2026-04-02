@@ -5,17 +5,43 @@
  * this hook-based component ensures the user is always scrolled to the top (0, 0)
  * of the page upon entering a new route.
  */
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import styles from './ScrollToTop.module.scss';
 
 const ScrollToTop = () => {
-    const { pathname } = useLocation();
+    const [isVisible, setIsVisible] = useState(true);
+
+    // Show button when page is scorched down
+    const toggleVisibility = () => {
+        if (window.pageYOffset > 300) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    };
+
+    // Set the top scroll behavior
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Forces the window to the top (x: 0, y: 0)
-    }, [pathname]); // Runs every time the URL changes
+        window.addEventListener("scroll", toggleVisibility);
+        return () => window.removeEventListener("scroll", toggleVisibility);
+    }, []);
 
-    return null; // This component does not render anything visually.
+    return (
+        <div className={styles.scrollToTop}>
+            {isVisible && (
+                <button type="button" onClick={scrollToTop} aria-label="Scroll to top">
+                    <span>↑</span>
+                </button>
+            )}
+        </div>
+    );
 };
 
 export default ScrollToTop;
