@@ -26,8 +26,7 @@
             padding: 0.8rem;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 1rem;
-            font-family: inherit;
+            font: v.$font-textarea;
 
             &:focus {
                 outline: 2px solid v.$primary-color;

@@ -7,6 +7,7 @@
  */
 import { useEffect, useState } from "react";
 import styles from './ScrollToTop.module.scss';
+import Button from "./Button";
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -36,9 +37,11 @@ const ScrollToTop = () => {
     return (
         <div className={styles.scrollToTop}>
             {isVisible && (
-                <button type="button" onClick={scrollToTop} aria-label="Scroll to top">
+                <Button variant="icon" 
+                onClick={scrollToTop} 
+                aria-label="Scroll to top">
                     <span>↑</span>
-                </button>
+                </Button>
             )}
         </div>
     );

@@ -3,28 +3,8 @@
 .accessibilityBar {
     .container {
         display: flex;
-        gap: 1rem;
+        gap: .3rem;
         max-width: v.$container-max-width;
         margin: 0 auto;
-    }
-
-    .accBtn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: none;
-        border: none;
-        color: v.$primary-color;
-        font: v.$font-accessibility;
-        cursor: pointer;
-
-        &:hover {
-            background-color: v.$hover-color;
-            color: v.$primary-color;
-        }
-
-        svg {
-            color: v.$primary-color;
-        }
     }
 }

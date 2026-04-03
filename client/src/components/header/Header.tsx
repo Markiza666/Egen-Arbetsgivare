@@ -14,6 +14,7 @@ import Logo from '../../assets/Logo.svg';
 import styles from './Header.module.scss';
 import MenuMobile from '../menu/MenuMobile';
 import AccessibilityBar from './AccessibilityBar';
+import Button from '../common/Button';
 
 const useWindowSize = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -67,10 +68,10 @@ const Header: React.FC = () => {
 
                         {/* Menu button (Mobile) */}
                         {isMobile && (
-                            <button type='button' className={styles.menuBtn} onClick={() => setIsMenuOpen(true)}>
+                            <Button variant="menu" onClick={() => setIsMenuOpen(true)}>
                                 <Menu size={24} />
                                 <span>Meny</span>
-                            </button>
+                            </Button>
                         )}
 
                         {/* Mobile Menu Component */}
@@ -84,16 +85,16 @@ const Header: React.FC = () => {
                         {/* Search field */}
                         <div className={styles.headerActions}>
                             {isMobile ? (
-                                <button className={styles.searchBtn} type='button'>
+                                <Button variant="menu">
                                     <Search size={24} />
                                     <span>Sök</span>
-                                </button>
+                                </Button>
                             ) : (
                                 <form className={styles.searchFieldDesktop}>
                                     <input type="text" placeholder="Sök..." />
-                                    <button type='button'>
+                                    <Button variant="primary" type="submit">
                                         <span>SÖK</span>
-                                    </button>
+                                    </Button>
                                 </form>
                             )}
                         </div>

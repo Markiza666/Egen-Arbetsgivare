@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import styles from './ContactForm.module.scss';
-
 /**
  * ContactForm Component
- * * Includes contact preferences, status radio buttons, and GDPR consent.
+ * * Responsibilities:
+ * - Collects user data via various input types (text, checkbox, radio).
+ * - Manages complex form state, including arrays for multiple choices.
+ * - Handles asynchronous submission to the backend API.
+ * - Provides feedback via a success view upon successful submission.
  */
+import React, { useState } from 'react';
+import styles from './ContactForm.module.scss';
+import Button from './Button';
+
 const ContactForm: React.FC = () => {
     const initialFormState = {
         name: '',
@@ -19,9 +24,14 @@ const ContactForm: React.FC = () => {
     const [formData, setFormData] = useState(initialFormState);
     const [submitted, setSubmitted] = useState(false);
 
+    /**
+     * Handles updates for all input types.
+     * Special logic is applied for checkboxes (arrays and booleans).
+     */
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
     
+        // Logic for multiple-choice preferences (Checkbox array)
         if (type === 'checkbox' && name === 'preferences') {
             const { checked, value: checkboxValue } = e.target as HTMLInputElement;
             setFormData(prev => ({
@@ -30,20 +40,26 @@ const ContactForm: React.FC = () => {
                     ? [...prev.preferences, checkboxValue]
                     : prev.preferences.filter(item => item !== checkboxValue)
             }));
+        // Logic for single GDPR consent (Boolean)
         } else if (type === 'checkbox' && name === 'gdprConsent') {
             const { checked } = e.target as HTMLInputElement;
             setFormData(prev => ({ ...prev, gdprConsent: checked }));
+        // Logic for standard text inputs and radio buttons
         } else {
             setFormData(prev => ({ ...prev, [name]: value }));
         }
     };
 
+    /**
+     * Submits the form data to the server.
+     */
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        // Final guard to ensure GDPR consent is granted
         if (!formData.gdprConsent) return; // Security check
 
         try {
-            // Connecting frontend to backend
+            // Attempting to post the data to the backend API
             const response = await fetch('http://localhost:5001/api/contact', {
                 method: 'POST',
                 headers: {
@@ -53,7 +69,7 @@ const ContactForm: React.FC = () => {
                     name: formData.name,
                     email: formData.email,
                     message: formData.message 
-                    // Om din backend bara tar emot name, email, message så skickar vi bara de.
+                    // Note: Ensure backend is updated if phone/preferences are needed
                 }),
             });
 
@@ -70,6 +86,9 @@ const ContactForm: React.FC = () => {
             setSubmitted(true);
         };
 
+    /**
+     * Resets the form to its initial state to allow a new submission.
+     */
     const handleReset = () => {
         setFormData(initialFormState);
         setSubmitted(false);
@@ -81,13 +100,13 @@ const ContactForm: React.FC = () => {
             <div className={styles.successMessage}>
                 <h3>Tack för ditt meddelande!</h3>
                 <p>Vi har tagit emot dina uppgifter och återkommer till dig så snart vi kan.</p>
-                <button 
-                    type="button" 
-                    className={styles.submitBtn} 
-                    onClick={handleReset}
+                <Button 
+                variant="outline" 
+                onClick={handleReset}
                 >
                     Skicka ett till meddelande
-                </button>
+                </Button>
+
             </div>
         );
     }
@@ -98,7 +117,7 @@ const ContactForm: React.FC = () => {
 
             <p>Fält markerade med en (<span className={styles.requiredStar}>*</span>) är obligatoriska.</p>
             
-            {/* Standard fields */}
+            {/* Standard Input Fields */}
             <div className={styles.inputGroup}>
                 <label htmlFor="name">Namn <span className={styles.requiredStar}>*</span></label>
                 <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
@@ -114,7 +133,7 @@ const ContactForm: React.FC = () => {
                 <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
             </div>
 
-            {/* Contact Preferences */}
+            {/* Checkbox Section for multiple options */}
             <div className={styles.checkboxSection}>
                 <p className={styles.sectionLabel}>Jag önskar:</p>
                 {[
@@ -141,7 +160,7 @@ const ContactForm: React.FC = () => {
                 <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={4} />
             </div>
 
-            {/* Assistance Status */}
+            {/* Radio Section for mutually exclusive choices */}
             <div className={styles.radioSection}>
                 <p className={styles.sectionLabel}>Nuvarande situation:</p>
                 <label className={styles.radioLabel}>
@@ -167,7 +186,7 @@ const ContactForm: React.FC = () => {
                 </label>
             </div>
 
-            {/* GDPR Consent */}
+            {/* GDPR Compliance Checkbox*/}
             <div className={styles.consentSection}>
                 <label className={styles.checkboxLabel}>
                     <input
@@ -181,13 +200,13 @@ const ContactForm: React.FC = () => {
                 </label>
             </div>
 
-            <button 
-                type="submit" 
-                className={styles.submitBtn} 
-                disabled={!formData.gdprConsent}
+            {/* Form Actions */}
+            <Button 
+            variant="primary" 
+            onClick={handleReset}
             >
-                Kontakt
-            </button>
+                Skicka ett till meddelande
+            </Button>
         </form>
     );
 };

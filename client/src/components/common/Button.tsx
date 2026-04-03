@@ -1,9 +1,11 @@
 /**
  * Button Component
  * * Responsibilities:
- * - Provides a standardized, reusable button element.
- * - Supports different visual variants (primary, outline, ghost).
- * - Handles standard HTML button attributes like type and disabled state.
+ * - Provides a standardized, reusable button element for the entire application.
+ * - Supports multiple visual variants: primary, outline, cancel, ghost, icon, menu.
+ * - Polymorphic behavior: Automatically renders as a React Router 'NavLink' if the 'to' prop is provided,
+ * otherwise renders as a standard HTML 'button'.
+ * - Spreads all standard HTML button attributes or NavLink props to the root element.
  */
 import React from 'react';
 import styles from './Button.module.scss';
