@@ -24,14 +24,42 @@ const TestimonialForm: React.FC = () => {
     });
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false); // Added loading state
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Here we will eventually add the API call to your backend
-        console.log('Submitting testimonial:', formData);
-        setIsSubmitted(true);
+    /**
+     * Submits the testimonial to the backend API
+     */
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch('http://127.0.0.1:5001/api/testimonials', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    author: formData.name,   // Mapping 'name' to 'author' in backend
+                    content: formData.comment, // Mapping 'comment' to 'content' in backend
+                    rating: formData.rating,
+                    // email is currently not in the schema, but could be added later
+                }),
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                console.error('Server returned an error');
+            }
+        } catch (error) {
+            console.error('Failed to connect to the server:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
+    // --- Success View ---
     if (isSubmitted) {
         return (
             <div className={styles.successMessage}>
@@ -44,6 +72,7 @@ const TestimonialForm: React.FC = () => {
         );
     }
 
+    // --- Form View ---
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <h2>Dela din upplevelse</h2>
@@ -74,7 +103,10 @@ const TestimonialForm: React.FC = () => {
                 <label>Betyg</label>
                 <div className={styles.starRating}>
                     {[1, 2, 3, 4, 5].map((star) => (
-                        <Button type="submit" variant="icon"
+                        <Button 
+                            key={star}
+                            type="button" // Important: Changed from "submit" to "button" to avoid triggering form submit
+                            variant="icon"
                             className={star <= formData.rating ? styles.activeStar : styles.star}
                             onClick={() => setFormData({...formData, rating: star})}
                             aria-label={`Ge ${star} stjärnor`}
@@ -96,9 +128,13 @@ const TestimonialForm: React.FC = () => {
                 />
             </div>
 
-            {/* Using the new Button component as a submit button */}
-            <Button type="submit" variant="primary" style={{ width: '100%' }}>
-                Skicka recension
+            <Button 
+                type="submit" 
+                variant="primary" 
+                style={{ width: '100%' }}
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? 'Skickar...' : 'Skicka recension'}
             </Button>
         </form>
     );
