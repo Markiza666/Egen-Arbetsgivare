@@ -1,0 +1,78 @@
+@use '../../styles/variables' as v;
+
+.container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: v.$text-color;
+  }
+}
+
+.grid {
+  display: grid;
+  // Skapar automatiskt kolumner som är minst 300px breda
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  border: 1px solid rgba(v.$primary-color, 0.1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.rating {
+  color: #ffc107; // Guld/Gul färg för stjärnorna
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.content {
+  font-style: italic;
+  line-height: 1.6;
+  color: v.$text-muted;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; // Ser till att texten tar upp plats så namnen linjerar i botten
+}
+
+.author {
+  font-weight: 700;
+  color: v.$primary-color;
+  margin: 0;
+}
+
+.role {
+  font-size: 0.85rem;
+  color: v.$text-muted;
+  margin-top: 0.2rem;
+}
+
+// --- Status States ---
+
+.loading, .error {
+  padding: 4rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #dc3545;
+}

@@ -13,7 +13,7 @@
 import React, { useState } from 'react';
 import styles from './TestimonialForm.module.scss';
 import type { TestimonialFormData } from '../../types';
-import Button from '../common/Button';
+import Button from './Button';
 
 const TestimonialForm: React.FC = () => {
     const [formData, setFormData] = useState<TestimonialFormData>({
