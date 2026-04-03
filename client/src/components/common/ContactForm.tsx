@@ -23,28 +23,27 @@ const ContactForm: React.FC = () => {
 
     const [formData, setFormData] = useState(initialFormState);
     const [submitted, setSubmitted] = useState(false);
+    // This state tracks the loading status during the API call
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     /**
      * Handles updates for all input types.
      * Special logic is applied for checkboxes (arrays and booleans).
      */
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value, type } = e.target;
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value, type } = event.target;
     
-        // Logic for multiple-choice preferences (Checkbox array)
         if (type === 'checkbox' && name === 'preferences') {
-            const { checked, value: checkboxValue } = e.target as HTMLInputElement;
+            const { checked, value: checkboxValue } = event.target as HTMLInputElement;
             setFormData(prev => ({
                 ...prev,
                 preferences: checked 
                     ? [...prev.preferences, checkboxValue]
                     : prev.preferences.filter(item => item !== checkboxValue)
             }));
-        // Logic for single GDPR consent (Boolean)
         } else if (type === 'checkbox' && name === 'gdprConsent') {
-            const { checked } = e.target as HTMLInputElement;
+            const { checked } = event.target as HTMLInputElement;
             setFormData(prev => ({ ...prev, gdprConsent: checked }));
-        // Logic for standard text inputs and radio buttons
         } else {
             setFormData(prev => ({ ...prev, [name]: value }));
         }
@@ -53,38 +52,44 @@ const ContactForm: React.FC = () => {
     /**
      * Submits the form data to the server.
      */
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        // Final guard to ensure GDPR consent is granted
-        if (!formData.gdprConsent) return; // Security check
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        
+        // Final guard to ensure GDPR consent is granted before submission
+        if (!formData.gdprConsent) return;
+
+        setIsSubmitting(true);
 
         try {
-            // Attempting to post the data to the backend API
             const response = await fetch('http://localhost:5001/api/contact', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     name: formData.name,
                     email: formData.email,
-                    message: formData.message 
-                    // Note: Ensure backend is updated if phone/preferences are needed
+                    phone: formData.phone,
+                    message: formData.message,
+                    preferences: formData.preferences,
+                    hasAssistance: formData.hasAssistance
                 }),
             });
 
             if (response.ok) {
-                console.log('Data sparad i databasen!');
+                console.log('Data saved to database successfully!');
                 setSubmitted(true);
             } else {
-                console.error('Servern svarade med ett fel');
+                const errorData = await response.json();
+                console.error('Server error:', errorData.message);
+                alert('Något gick fel vid sparandet. Försök igen!');
             }
         } catch (error) {
-            console.error('Kunde inte nå servern:', error);
+            console.error('Network error:', error);
+            alert('Kunde inte nå servern. Kontrollera din internetanslutning.');
+        } finally {
+            // Ensure loading state is disabled regardless of success or failure
+            setIsSubmitting(false);
         }
-            console.log('Form submitted:', formData);
-            setSubmitted(true);
-        };
+    };
 
     /**
      * Resets the form to its initial state to allow a new submission.
@@ -101,12 +106,11 @@ const ContactForm: React.FC = () => {
                 <h3>Tack för ditt meddelande!</h3>
                 <p>Vi har tagit emot dina uppgifter och återkommer till dig så snart vi kan.</p>
                 <Button 
-                variant="outline" 
-                onClick={handleReset}
+                    variant="outline" 
+                    onClick={handleReset}
                 >
                     Skicka ett till meddelande
                 </Button>
-
             </div>
         );
     }
@@ -117,7 +121,6 @@ const ContactForm: React.FC = () => {
 
             <p>Fält markerade med en (<span className={styles.requiredStar}>*</span>) är obligatoriska.</p>
             
-            {/* Standard Input Fields */}
             <div className={styles.inputGroup}>
                 <label htmlFor="name">Namn <span className={styles.requiredStar}>*</span></label>
                 <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
@@ -133,7 +136,6 @@ const ContactForm: React.FC = () => {
                 <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
             </div>
 
-            {/* Checkbox Section for multiple options */}
             <div className={styles.checkboxSection}>
                 <p className={styles.sectionLabel}>Jag önskar:</p>
                 {[
@@ -160,7 +162,6 @@ const ContactForm: React.FC = () => {
                 <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={4} />
             </div>
 
-            {/* Radio Section for mutually exclusive choices */}
             <div className={styles.radioSection}>
                 <p className={styles.sectionLabel}>Nuvarande situation:</p>
                 <label className={styles.radioLabel}>
@@ -186,7 +187,6 @@ const ContactForm: React.FC = () => {
                 </label>
             </div>
 
-            {/* GDPR Compliance Checkbox*/}
             <div className={styles.consentSection}>
                 <label className={styles.checkboxLabel}>
                     <input
@@ -200,12 +200,13 @@ const ContactForm: React.FC = () => {
                 </label>
             </div>
 
-            {/* Form Actions */}
+            {/* Submit Action: Using type="submit" and dynamic label for better UX */}
             <Button 
-            variant="primary" 
-            onClick={handleReset}
+                variant="primary" 
+                type="submit"
+                disabled={isSubmitting}
             >
-                Skicka ett till meddelande
+                {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
             </Button>
         </form>
     );
