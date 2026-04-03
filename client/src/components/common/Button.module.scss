@@ -1,0 +1,100 @@
+@use '../../styles/variables' as v;
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font: v.$font-btn;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.primary {
+    background-color: v.$primary-color;
+    color: v.$white;
+
+    &:hover {
+        background-color: v.$hover-color;
+        transform: translateY(-2px);
+    }
+}
+
+.ghost {
+    background: transparent;
+    color: v.$primary-color;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    font: v.$font-text-link;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-color: #eee;
+    }
+
+    svg {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.menu {
+    background: transparent;
+    color: v.$text-color;
+    padding: 0.5rem;
+    gap: 0.3rem;
+    flex-direction: column; // Bra för mobil-ikoner där texten står under
+    font: v.$font-btn;
+    border: none;
+
+    &:hover {
+        color: v.$primary-color;
+    }
+}
+
+.outline {
+    background: transparent;
+    border-color: v.$primary-color;
+    color: v.$primary-color;
+
+    &:hover {
+        background-color: v.$primary-color;
+        color: v.$white;
+    }
+}
+
+.icon {
+    background-color: v.$primary-color;
+    color: v.$white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+    font: v.$font-btn;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    &:hover {
+        background-color: v.$hover-color;
+        transform: translateY(-5px); // En liten "lyft"-effekt
+    }
+}
+
+.cancel {
+    background: transparent;
+    border-color: #ccc;
+    color: #666;
+
+    &:hover {
+        background-color: v.$primary-color;
+        color: v.$white;
+    }
+}

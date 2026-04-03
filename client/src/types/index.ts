@@ -9,6 +9,11 @@ export interface AccordionProps {
     isOpenDefault?: boolean;
 }
 
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: 'menu' | 'primary' | 'ghost' | 'outline' | 'cancel' | 'icon' ; // Define different styles
+    children: React.ReactNode;
+}
+
 export interface Story {
     id: string;
     name: string;
@@ -79,4 +84,11 @@ export interface Step {
   estimate: string;
   link?: string;
   subLink?: { text: string; url: string };
+}
+
+export interface TestimonialFormData {
+    name: string;
+    email: string;
+    rating: number;
+    comment: string;
 }
