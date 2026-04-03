@@ -86,6 +86,16 @@ export interface Step {
   subLink?: { text: string; url: string };
 }
 
+export interface ITestimonial {
+    _id: string; 
+    author: string;
+    role?: string;
+    content: string;
+    rating: number;
+    approved: boolean;
+    createdAt: string; // Dates are sent as strings (ISO) over JSON
+}
+
 export interface TestimonialFormData {
     name: string;
     email: string;
