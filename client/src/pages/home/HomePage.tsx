@@ -6,15 +6,19 @@
  * - Aggregates key highlights from services, news, and client stories.
  * - Acts as a gateway to deeper sections of the site (Assistans, Arbetsgivare, etc.).
  */
-import React from 'react';
+import React, { useState } from 'react';
 import startHero from '../../assets/startHero.svg';
 import ServiceAccordion from './ServiceAccordion';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom'; 
 import styles from './HomePage.module.scss';
 import { useServices } from '../../hooks/useServices';
+import Testimonial from '../../components/common/Testimonial';
+import TestimonialForm from '../../components/common/TestimonialForm';
+import Button from '../../components/common/Button';
 
 const HomePage: React.FC = () => {
     const { services, loading } = useServices();
+    const [showForm, setShowForm] = useState(false); // State to toggle form visibility
 
     if (loading) return <div>Laddar tjänster...</div>;
 
@@ -58,6 +62,46 @@ const HomePage: React.FC = () => {
                     <p>Välj själv vilka som ska vara dina assistenter, vad de ska få i lön, vilka utbildningar de ska gå, deras arbetsuppgifter och hur jobbet ska skötas.</p>
 
                     <p>Kom att <NavLink to="/bli-egen-arbetsgivare">bli egen arbetsgivare</NavLink> och <NavLink to="/kontakt">kontakta Egen assistans</NavLink> om du vill ha hjälp.</p>
+                </section>
+            </div>
+
+            <div className={styles.testimonial}>
+                <section className={styles.testimonialSection}>
+                    <hr className={styles.divider} />
+                    <h2>Vad våra medlemmar säger</h2>
+                    
+                    <div className={styles.testimonialGrid}>
+                        <Testimonial 
+                            quote="Att bli egen arbetsgivare var det bästa beslutet för min familj. Vi har äntligen kontroll." 
+                            author="Karin S." 
+                            subline="Egen arbetsgivare sedan 2023" 
+                        />
+                        <Testimonial 
+                            quote="Suveränt stöd med det administrativa. Nu kan jag fokusera på att vara pappa istället för pappersarbetare." 
+                            author="Marcus L." 
+                            subline="Medlem i Västerbotten" 
+                        />
+                    </div>
+
+                    <div className={styles.formContainer}>
+                        {!showForm ? (
+                            <Button 
+                            variant="primary" 
+                            onClick={() => setShowForm(true)}>
+                                Dela din upplevelse med oss
+                            </Button>
+                        ) : (
+                            <div className={styles.formFadeIn}>
+                                <TestimonialForm />
+                                <Button 
+                                variant="cancel" 
+                                onClick={() => setShowForm(false)}
+                                >
+                                    Avbryt
+                                </Button>
+                            </div>
+                        )}
+                    </div>
                 </section>
             </div>
         </div>
