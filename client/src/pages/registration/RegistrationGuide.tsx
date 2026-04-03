@@ -1,3 +1,11 @@
+/**
+ * RegistrationGuide Component
+ * * Responsibilities:
+ * - Serves as a layout container for the "Step-by-Step" registration process.
+ * - Manages page structure: Breadcrumbs, Hero section, Guide content, and Lead generation (Form).
+ * - Maps static step data to dynamic StepCard components.
+ * - Integrates the ContactForm to allow immediate user conversion after reading the guide.
+ */
 import { NavLink } from 'react-router-dom';
 import register from '../../assets/register.svg';
 import ContactForm from '../../components/common/ContactForm';

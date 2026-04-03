@@ -27,13 +27,13 @@
     .topBar {
         grid-area: top;
         background-color: v.$secondary-color;
-        padding: .5rem 0 .5rem .5rem;
+        width: 100%;
 
         @media (min-width: 768px) {
             display: block;
         
             .topBarContainer {
-                padding-right: 1rem;
+                padding: 0.5rem 1rem;
                 margin: 0 auto;
                 max-width: v.$container-max-width;
                 display: flex;
@@ -42,13 +42,27 @@
             }
         }
 
-        .accessTools, .secondaryNav {
+        .secondaryNav {
+            background-color: v.$secondary-color;
+            display: flex;
+            padding: 1rem;
+            gap: 1.5rem;
+            a {
+                text-decoration: none;
+                color: v.$primary-color;
+                font: v.$font-text-link;
+                &:hover { 
+                    border-bottom: 2px solid v.$hover-color; 
+                }
+            }
+        }
+        .accessTools {
             width: 100%;
             display: flex;
             gap: 1.5rem;
             font: v.$font-accessibility;
             
-            button, a {
+            a {
                 background: none;
                 border: none;
                 color: v.$primary-color;
@@ -70,18 +84,26 @@
 
     // --- MAIN HEADER ---
     .mainHeader {
+        width: 100%;
         grid-area: main;
-        padding: .5rem 0 1rem 0;
+        padding-bottom: .5rem;
 
         @media (min-width: 768px) {
             padding: 0;
         }
 
         .mainHeaderContainer {
+            max-width: v.$container-max-width;
+            margin: 0 auto;
             display: flex;
-            align-items: center;
-            padding: 0;
+            flex-direction: column;
             gap: 1rem;
+
+            @media (min-width: 768px) {
+                flex-direction: row; // För desktop
+                justify-content: space-between;
+                padding: 1rem;
+            }
         }
 
         .headerTopRow {
@@ -89,6 +111,7 @@
             width: 100%;
             justify-content: space-between;
             align-items: center;
+            gap: 0.5rem;
 
             @media (min-width: 768px) {
                 padding: 1rem 0;
@@ -112,13 +135,14 @@
             }
             
             .logo {
-                flex: 1;
+                flex: 0 1 auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 text-decoration: none;
 
                 @media (min-width: 768px) {
+                    flex: 1;
                     justify-content: flex-start;
                 }
 
@@ -132,6 +156,8 @@
                 }
 
                 .logoText {
+                    white-space: nowrap;
+                    overflow: hidden;
                     font: v.$font-logotype;
                     color: v.$primary-color;
                     padding-left: 0.8rem;
@@ -170,30 +196,6 @@
 
                     &::placeholder {
                         color: #aaa;
-                    }
-                }
-
-                button {
-                    height: $search-height;
-                    padding: 0 .8rem;
-                    background-color: v.$secondary-color;
-                    color: v.$primary-color;
-                    border: none;
-                    border-radius: 4px;
-                    font: v.$font-btn;
-                    letter-spacing: 0.8px;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: background-color 0.2s;
-
-                    &:hover {
-                        background-color: v.$hover-color;
-                    }
-
-                    span {
-                        line-height: 1;
                     }
                 }
             }

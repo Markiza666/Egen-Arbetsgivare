@@ -1,8 +1,21 @@
+/**
+ * StepCard Component
+ * * Responsibilities:
+ * - Represents a single step in a multi-step guide or process.
+ * - Dynamically injects inline links into the description text.
+ * - Handles external links for both titles and sub-links.
+ * - Displays metadata like estimated time for completion.
+ */
 import type { Step } from '../../types';
 import styles from './RegistrationGuide.module.scss';
 
 const StepCard: React.FC<Step> = ({ number, title, description, estimate, link, subLink }) => {
 
+    /**
+     * Logic to handle inline linking:
+     * If a subLink is provided, we split the description at the text point
+     * where the link should appear to insert the anchor tag between parts.
+     */
     const parts = subLink ? description.split(subLink.text) : [description];
     return (
         <div className={styles.stepCard}>
