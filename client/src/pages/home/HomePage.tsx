@@ -12,8 +12,8 @@ import ServiceAccordion from './ServiceAccordion';
 import { NavLink } from 'react-router-dom'; 
 import styles from './HomePage.module.scss';
 import { useServices } from '../../hooks/useServices';
-import Testimonial from '../../components/common/Testimonial';
-import TestimonialForm from '../../components/common/TestimonialForm';
+import Testimonial from '../../components/common/testimonial/Testimonial';
+import TestimonialForm from '../../components/common/testimonial/TestimonialForm';
 import Button from '../../components/common/Button';
 
 const HomePage: React.FC = () => {

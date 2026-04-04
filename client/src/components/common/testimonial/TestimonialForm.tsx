@@ -12,8 +12,8 @@
  */
 import React, { useState } from 'react';
 import styles from './TestimonialForm.module.scss';
-import type { TestimonialFormData } from '../../types';
-import Button from './Button';
+import type { TestimonialFormData } from '../../../types';
+import Button from '../Button';
 
 const TestimonialForm: React.FC = () => {
     const [formData, setFormData] = useState<TestimonialFormData>({
@@ -75,7 +75,7 @@ const TestimonialForm: React.FC = () => {
     // --- Form View ---
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
-            <h2>Dela din upplevelse</h2>
+            <sub className={styles.head}>Dela din upplevelse</sub>
             
             <div className={styles.inputGroup}>
                 <label htmlFor="name">Namn</label>

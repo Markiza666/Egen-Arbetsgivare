@@ -19,7 +19,7 @@ const RegistrationGuide: React.FC = () => {
 
             {/* Navigation Breadcrumbs - Using CSS for the separator arrow */}
             <nav className={styles.breadcrumbs}>
-                <a href="/">Hem</a>
+                <NavLink className={styles.nav} to="/">Hem</NavLink>
                 <span>Bli egen arbetsgivare</span>
                 <span>Steg för steg</span>
             </nav>

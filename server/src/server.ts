@@ -62,6 +62,31 @@ app.get('/api/contact', async (req: Request, res: Response) => {
     }
 });
 
+app.get('/api/testimonials', async (req, res) => {
+    try {
+        const testimonials = await Testimonial.find({ approved: true }).sort({ createdAt: -1 });
+        res.json(testimonials);
+    } catch (error) {
+        res.status(500).send();
+    }
+});
+
+app.get('/api/testimonials/:id', async (req: Request, res: Response) => {
+    try {
+        // req.params.id plockar ut ID:t från URL:en (/api/testimonials/123)
+        const testimonial = await Testimonial.findById(req.params.id);
+        
+        if (!testimonial) {
+            return res.status(404).json({ message: 'Berättelsen hittades inte.' });
+        }
+        
+        res.json(testimonial);
+    } catch (error) {
+        // Om ID:t inte är i rätt format eller databasen strular
+        res.status(500).json({ message: 'Fel vid hämtning av berättelse.' });
+    }
+});
+
 app.post('/api/testimonials', async (req: Request, res: Response) => {
     try {
         const { author, role, content, rating } = req.body;
@@ -70,15 +95,6 @@ app.post('/api/testimonials', async (req: Request, res: Response) => {
         res.status(201).json({ success: true });
     } catch (error) {
         res.status(500).json({ success: false });
-    }
-});
-
-app.get('/api/testimonials', async (req: Request, res: Response) => {
-    try {
-        const testimonials = await Testimonial.find({ approved: true }).sort({ createdAt: -1 });
-        res.json(testimonials);
-    } catch (error) {
-        res.status(500).send();
     }
 });
 

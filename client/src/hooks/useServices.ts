@@ -32,7 +32,7 @@ export const useServices = () => {
                 {
                     id: 'berattelser',
                     title: 'Egna berättelser',
-                    path: '/egena-berättelser',
+                    path: '/vara-kunder',
                     description: 'Läs om hur andra har tagit makten över sin vardag som egna arbetsgivare.',
                     features: ['Kundintervjuer', 'Erfarenhetsutbyte', 'Inspiration']
                 },

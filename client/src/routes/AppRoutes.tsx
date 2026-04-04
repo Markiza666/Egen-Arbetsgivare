@@ -16,6 +16,7 @@ import styles from '../pages/notFound/NotFound.module.scss'; // Reusing styles f
 import ServicesPage from '../pages/services/ServicesPage';
 import BecomingEmployerPage from '../pages/become-employer/BecomingEmployerPage';
 import RegistrationGuide from '../pages/registration/RegistrationGuide';
+import TestimonialsPage from '../pages/testimonialPage/TestimonialsPage';
 
 const PagePlaceholder: React.FC<{ title: string }> = ({ title }) => (
     <div className={styles.pagePlaceholder}>
@@ -32,14 +33,11 @@ const AppRoutes: React.FC = () => {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
-                
+                <Route path="vara-kunder" element={<TestimonialsPage />} />
                 <Route path="tjanster" element={<ServicesPage />} />
-
                 <Route path="bli-egen-arbetsgivare" element={<BecomingEmployerPage />} />
-                
-                <Route path="*" element={<PagePlaceholder title="404 - Sidan hittades inte" />} />
-
                 <Route path="/steg-for-steg" element={<RegistrationGuide />} />
+                <Route path="*" element={<PagePlaceholder title="404 - Sidan hittades inte" />} />
             </Route>
         </Routes>
     );
