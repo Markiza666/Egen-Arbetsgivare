@@ -8,7 +8,7 @@
  */
 import { Volume2, BookOpen, Globe } from 'lucide-react';
 import styles from './AccessibilityBar.module.scss';
-import Button from '../common/Button';
+import Button from '../common/button/Button';
 
 const AccessibilityBar: React.FC = () => {
     return (

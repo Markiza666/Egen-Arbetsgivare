@@ -17,6 +17,7 @@ import ServicesPage from '../pages/services/ServicesPage';
 import BecomingEmployerPage from '../pages/become-employer/BecomingEmployerPage';
 import RegistrationGuide from '../pages/registration/RegistrationGuide';
 import TestimonialsPage from '../pages/testimonialPage/TestimonialsPage';
+import TestimonialDetailsPage from '../pages/testimonialPage/TestimonialDetailsPage';
 
 const PagePlaceholder: React.FC<{ title: string }> = ({ title }) => (
     <div className={styles.pagePlaceholder}>
@@ -34,6 +35,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
                 <Route path="vara-kunder" element={<TestimonialsPage />} />
+                <Route path="vara-kunder/:id" element={<TestimonialDetailsPage />} />
                 <Route path="tjanster" element={<ServicesPage />} />
                 <Route path="bli-egen-arbetsgivare" element={<BecomingEmployerPage />} />
                 <Route path="/steg-for-steg" element={<RegistrationGuide />} />

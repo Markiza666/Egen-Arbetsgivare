@@ -8,7 +8,7 @@
  */
 import React, { useState } from 'react';
 import styles from './ContactForm.module.scss';
-import Button from './Button';
+import Button from './button/Button';
 
 const ContactForm: React.FC = () => {
     const initialFormState = {

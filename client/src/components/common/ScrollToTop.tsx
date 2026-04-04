@@ -7,7 +7,7 @@
  */
 import { useEffect, useState } from "react";
 import styles from './ScrollToTop.module.scss';
-import Button from "./Button";
+import Button from "./button/Button";
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(true);

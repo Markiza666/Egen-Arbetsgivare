@@ -38,12 +38,12 @@ p, .stepInfo {
             gap: .2rem;
             padding: 0 0 1rem 1rem;
 
-            a {
+            .nav, .navSub {
                 font: v.$font-breadcrumbs;
                 text-decoration-line: none;
             }
 
-            span {
+            .navSub, span {
                 font: v.$font-breadcrumbs;
                 color: v.$primary-color;
                 &::before {

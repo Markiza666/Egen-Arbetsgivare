@@ -14,7 +14,7 @@ import Logo from '../../assets/Logo.svg';
 import styles from './Header.module.scss';
 import MenuMobile from '../menu/MenuMobile';
 import AccessibilityBar from './AccessibilityBar';
-import Button from '../common/Button';
+import Button from '../common/button/Button';
 
 const useWindowSize = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);

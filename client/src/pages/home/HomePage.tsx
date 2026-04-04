@@ -14,7 +14,7 @@ import styles from './HomePage.module.scss';
 import { useServices } from '../../hooks/useServices';
 import Testimonial from '../../components/common/testimonial/Testimonial';
 import TestimonialForm from '../../components/common/testimonial/TestimonialForm';
-import Button from '../../components/common/Button';
+import Button from '../../components/common/button/Button';
 
 const HomePage: React.FC = () => {
     const { services, loading } = useServices();
