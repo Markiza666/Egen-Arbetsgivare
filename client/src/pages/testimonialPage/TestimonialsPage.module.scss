@@ -1,0 +1,104 @@
+@use '../../styles/variables' as v;
+
+h2 {
+    font: v.$font-h2;
+    text-align: center;
+}
+
+.requiredStar {
+    color: #ff0000;
+}
+
+.pageContainer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        max-width: v.$container-max-width;
+        padding: 0 1rem 1rem;
+    }
+
+    .breadcrumbs {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        padding: 0 0 1rem 1rem;
+
+        .nav {
+            font: v.$font-breadcrumbs;
+            text-decoration-line: none;
+        }
+
+        span {
+            font: v.$font-breadcrumbs;
+            color: v.$primary-color;
+            &::before {
+                content: '→';
+                margin-right: 4px;
+                color: #7d7d7d;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font: v.$font-text;
+        padding: 0 1rem;
+
+        .flexWrapper {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 3rem;
+
+            @media (min-width: 768px) {
+                max-width: v.$container-max-width;
+                flex-direction: row;
+                align-items: flex-start;
+                // gap: 5rem;
+            }
+
+            .testimonialGrid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .formContainer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+            }
+
+            .topFlexWrapper {
+                flex: 65%;
+                display: flex;
+                flex-direction: column;
+
+                @media (min-width: 768px) {
+                    align-items: flex-start;
+                }
+            }
+
+             .bottomFlexWrapper {
+                flex: 35%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-bottom: 2rem;
+
+                @media (min-width: 768px) {
+                    align-items: flex-start;
+                }
+            }
+        }
+    }
+}

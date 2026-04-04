@@ -1,0 +1,72 @@
+@use '../../../styles/variables' as v;
+
+.container {
+    max-width: v.$container-max-width;
+    margin: 1rem auto;
+    padding: 0 1.5rem;
+    text-align: center;
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        align-items: stretch;
+
+        .card {
+            background: v.$white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            border: 1px solid rgba(v.$primary-color, 0.1);
+            cursor: pointer;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            }
+
+            .rating {
+                color: #ffc107;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .content {
+                font-style: italic;
+                line-height: 1.6;
+                color: v.$text-color;
+                margin-bottom: 1.5rem;
+                flex-grow: 1;
+            }
+
+            .author {
+                font: v.$font-subtitle;
+                color: v.$text-color;
+                margin: 0;
+            }
+
+            .role {
+                font: v.$font-text;
+                color: v.$text-color;
+                margin-top: 0.2rem;
+            }
+        }
+    }
+}
+
+// --- Status States ---
+
+.loading, .error {
+    padding: 4rem;
+    text-align: center;
+    font: v.$font-subtitle;
+}
+
+.error {
+    color: #b80012;
+}

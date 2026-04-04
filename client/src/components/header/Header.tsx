@@ -105,7 +105,7 @@ const Header: React.FC = () => {
                 <nav className={styles.desktopNav}>
                     <NavLink to="/assistans">Personlig assistans</NavLink>
                     <NavLink to="/bli-egen-arbetsgivare">Bli egen arbetsgivare</NavLink>
-                    <NavLink to="/kunder">Våra kunder</NavLink>
+                    <NavLink to="/vara-kunder">Våra kunder</NavLink>
                     <NavLink to="/faq">Frågor och svar</NavLink>
                     <NavLink to="/nyheter">Nyheter</NavLink>
                 </nav>

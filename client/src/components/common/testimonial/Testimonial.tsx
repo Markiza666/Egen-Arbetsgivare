@@ -1,5 +1,5 @@
 import styles from './Testimonial.module.scss';
-import type { TestimonialProps } from '../../types';
+import type { TestimonialProps } from '../../../types';
 
 /**
  * Testimonial Component

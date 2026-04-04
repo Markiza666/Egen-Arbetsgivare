@@ -1,5 +1,5 @@
 import bli_egen_arbetsgivare from '../../assets/bli_egen_arbetsgivare.svg';
-import Testimonial from '../../components/common/Testimonial';
+import Testimonial from '../../components/common/testimonial/Testimonial';
 import ServiceAccordion from '../../pages/home/ServiceAccordion'; // Reusing your existing component
 import ContactForm from '../../components/common/ContactForm';
 import styles from './BecomingEmployerPage.module.scss';
@@ -23,7 +23,7 @@ const BecomingEmployerPage: React.FC = () => {
       
             {/* Navigation Breadcrumbs - Using CSS for the separator arrow */}
             <nav className={styles.breadcrumbs}>
-                <a href="/">Hem</a>
+                <NavLink className={styles.nav} to="/">Hem</NavLink>
                 <span>Bli egen arbetsgivare</span>
             </nav>
 

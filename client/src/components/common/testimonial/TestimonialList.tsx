@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from './TestimonialList.module.scss';
-import type { ITestimonial } from '../../types';
+import type { ITestimonial } from '../../../types';
+import { useNavigate } from 'react-router-dom';
 
 const TestimonialList: React.FC = () => {
     const [testimonials, setTestimonials] = useState<ITestimonial[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchTestimonials = async () => {
@@ -31,17 +34,24 @@ const TestimonialList: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <h2>Vad våra kunder säger</h2>
             <div className={styles.grid}>
                 {testimonials.length > 0 ? (
                     testimonials.map((t) => (
-                        <div key={t._id} className={styles.card}>
+                        <div 
+                        key={t._id} 
+                        className={styles.card}
+                        onClick={() => navigate(`/vara-kunder/${t._id}`)}
+                        >
                             <div className={styles.rating}>
                                 {'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}
                             </div>
-                            <p className={styles.content}>"{t.content}"</p>
+                            <p className={styles.content}>
+                                "{t.content.length > 150 ? t.content.substring(0, 150) + '...' : t.content}"
+                            </p>
                             <p className={styles.author}>- {t.author}</p>
                             {t.role && <p className={styles.role}>{t.role}</p>}
+
+                            <span className={styles.readMore}>Läs hela berättelsen →</span>
                         </div>
                     ))
                 ) : (
