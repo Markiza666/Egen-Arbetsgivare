@@ -2,7 +2,7 @@ import TestimonialList from '../../components/common/testimonial/TestimonialList
 import TestimonialForm from '../../components/common/testimonial/TestimonialForm';
 import styles from './TestimonialsPage.module.scss';
 import ContactForm from '../../components/common/ContactForm';
-import Button from '../../components/common/Button';
+import Button from '../../components/common/button/Button';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 

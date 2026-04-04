@@ -45,15 +45,27 @@
             }
 
             .author {
-                font: v.$font-subtitle;
+                font: v.$font-author;
                 color: v.$text-color;
                 margin: 0;
             }
 
             .role {
-                font: v.$font-text;
+                font: v.$font-role;
                 color: v.$text-color;
                 margin-top: 0.2rem;
+            }
+
+            .readMore {
+                margin-top: 1rem;
+                font: v.$font-text-link;
+                color: v.$primary-color;
+                text-decoration: none;
+                align-self: flex-start;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }

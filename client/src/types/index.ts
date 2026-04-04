@@ -55,12 +55,6 @@ export interface ServiceItem {
   features: string[]; // A list of points about what is included in the service
 }
 
-export interface TestimonialProps {
-  quote: string;
-  author: string;
-  subline: string;
-}
-
 export interface RegistrationStep {
     id: string;
     title: string;
@@ -96,9 +90,17 @@ export interface ITestimonial {
     createdAt: string; // Dates are sent as strings (ISO) over JSON
 }
 
+export interface TestimonialProps {
+  quote: string;
+  author: string;
+  subline: string;
+  role?: string;
+}
+
 export interface TestimonialFormData {
     name: string;
     email: string;
+    role: string;
     rating: number;
     comment: string;
 }

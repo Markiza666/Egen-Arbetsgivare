@@ -13,11 +13,12 @@
 import React, { useState } from 'react';
 import styles from './TestimonialForm.module.scss';
 import type { TestimonialFormData } from '../../../types';
-import Button from '../Button';
+import Button from '../button/Button';
 
 const TestimonialForm: React.FC = () => {
     const [formData, setFormData] = useState<TestimonialFormData>({
         name: '',
+        role: '',
         email: '',
         rating: 5, // Default to 5 stars
         comment: ''
@@ -41,6 +42,7 @@ const TestimonialForm: React.FC = () => {
                 },
                 body: JSON.stringify({
                     author: formData.name,   // Mapping 'name' to 'author' in backend
+                    role: formData.role,
                     content: formData.comment, // Mapping 'comment' to 'content' in backend
                     rating: formData.rating,
                     // email is currently not in the schema, but could be added later
@@ -85,6 +87,17 @@ const TestimonialForm: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     required 
+                />
+            </div>
+
+            <div className={styles.inputGroup}>
+                <label htmlFor="role">Roll / Titel (t.ex. Förälder, Assistent)</label>
+                <input 
+                    type="text" 
+                    id="role" 
+                    placeholder="Valfritt"
+                    value={formData.role}
+                    onChange={(e) => setFormData({...formData, role: e.target.value})}
                 />
             </div>
 
