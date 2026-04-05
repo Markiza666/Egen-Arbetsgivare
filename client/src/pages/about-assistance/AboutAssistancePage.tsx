@@ -1,3 +1,8 @@
+/**
+ * AboutAssistancePage Component
+ * Educates users about the rights and practicalities of personal assistance.
+ * Fetches provider data dynamically and displays it in an accordion format.
+ */
 import styles from './AboutAssistancePage.module.scss';
 import assistance from '../../assets/assistance.svg';
 import ContactForm from '../../components/common/contact-form/ContactForm';

@@ -1,8 +1,13 @@
+/**
+ * Static data for staff members to keep the JSX clean.
+ * Each member includes contact details and a reference to their SVG avatar.
+ */
 import styles from './ContactPage.module.scss';
 import ContactForm from '../../components/common/contact-form/ContactForm';
 import { Phone, Mail } from 'lucide-react';
 import contact_shef from '../../assets/contakt_shef.svg';
 import contakt_jur from '../../assets/contact_jur.svg';
+import { NavLink } from 'react-router-dom';
 
 const staffMembers = [
     {
@@ -26,6 +31,11 @@ const staffMembers = [
 const ContactPage: React.FC = () => {
     return (
         <main className={styles.contactPage}>
+            <nav className={styles.breadcrumbs}>
+                <NavLink className={styles.nav} to="/">Hem</NavLink>
+                <span>Kontakt</span>
+            </nav>
+            
             <header className={styles.header}>
                 <h2>Kontakta oss</h2>
                 <p>Vi hjälper dig gärna med frågor kring din assistans.</p>
