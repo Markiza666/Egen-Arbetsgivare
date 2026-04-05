@@ -29,6 +29,7 @@ const MenuMobile: React.FC<MenuMobileProps> = ({ isOpen, onClose }) => {
                 
                 <nav className={styles.mobileNav}>
                     <NavLink to="/" end onClick={onClose}>Hem</NavLink>
+                    <NavLink to="/kontakt" onClick={onClose}>Kontakt</NavLink>
                     <NavLink to="/personlig-assistans" onClick={onClose}>Personlig assistans</NavLink>
                     <NavLink to="/bli-egen-arbetsgivare" onClick={onClose}>Bli egen arbetsgivare</NavLink>
                     <NavLink to="/vara-kunder" onClick={onClose}>Våra kunder</NavLink>

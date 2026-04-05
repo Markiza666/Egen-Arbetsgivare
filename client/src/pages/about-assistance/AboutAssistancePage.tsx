@@ -1,6 +1,6 @@
 import styles from './AboutAssistancePage.module.scss';
 import assistance from '../../assets/assistance.svg';
-import ContactForm from '../../components/common/ContactForm';
+import ContactForm from '../../components/common/contact-form/ContactForm';
 import { useServices } from '../../hooks/useServices';
 import { LssInfo } from '../../components/assistance/LssInfo';
 import { BasicNeeds } from '../../components/assistance/BasicNeeds';

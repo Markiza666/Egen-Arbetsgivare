@@ -8,7 +8,7 @@
  */
 import { NavLink } from 'react-router-dom';
 import register from '../../assets/register.svg';
-import ContactForm from '../../components/common/ContactForm';
+import ContactForm from '../../components/common/contact-form/ContactForm';
 import { registrationSteps } from '../../data/registrationSteps';
 import styles from './RegistrationGuide.module.scss';
 import StepCard from './StepCards';

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
-import ScrollToTop from './components/common/ScrollToTop';
+import ScrollToTop from './components/scroll/ScrollToTop';
 import RouteAnnouncer from './components/common/RouteAnnouncer';
 
 const App: React.FC = () => {
