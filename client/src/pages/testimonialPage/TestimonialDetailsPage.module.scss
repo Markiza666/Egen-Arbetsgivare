@@ -102,6 +102,11 @@
             @media (min-width: 768px) {
                 align-items: flex-start;
             }
+            .inlineLink {
+                font: v.$font-text-link;
+                color: v.$primary-color;
+                text-decoration: none;
+            }
         }
     }
 }

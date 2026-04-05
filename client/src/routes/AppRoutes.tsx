@@ -19,6 +19,7 @@ import RegistrationGuide from '../pages/registration/RegistrationGuide';
 import TestimonialsPage from '../pages/testimonialPage/TestimonialsPage';
 import TestimonialDetailsPage from '../pages/testimonialPage/TestimonialDetailsPage';
 import AboutAssistancePage from '../pages/about-assistance/AboutAssistancePage';
+import ContactPage from '../pages/contact/ContactPage';
 
 const PagePlaceholder: React.FC<{ title: string }> = ({ title }) => (
     <div className={styles.pagePlaceholder}>
@@ -36,6 +37,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
                 <Route path="/personlig-assistans" element={<AboutAssistancePage />} />
+                <Route path="/kontakt" element={<ContactPage />} />
                 <Route path="/vara-kunder" element={<TestimonialsPage />} />
                 <Route path="/vara-kunder/:id" element={<TestimonialDetailsPage />} />
                 <Route path="/tjanster" element={<ServicesPage />} />

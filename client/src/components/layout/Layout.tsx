@@ -9,7 +9,7 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import ScrollToTop from '../common/ScrollToTop';
+import ScrollToTop from '../scroll/ScrollToTop';
 import RouteAnnouncer from '../common/RouteAnnouncer';
 import styles from './Layout.module.scss';
 
@@ -23,7 +23,10 @@ const Layout: React.FC = () => {
             <Header />
 
             {/* Unique content of the page */}
-            <main id="main-content" className={styles.mainContent}>
+            <main 
+                id="main-content" 
+                tabIndex={-1}
+                className={styles.mainContent}>
                 <Outlet />
             </main>
 

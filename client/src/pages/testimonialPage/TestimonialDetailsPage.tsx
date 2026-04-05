@@ -4,7 +4,7 @@ import Button from '../../components/common/button/Button';
 import styles from './TestimonialDetailsPage.module.scss';
 import type { ITestimonial } from '../../types';
 import TestimonialForm from '../../components/common/testimonial/TestimonialForm';
-import ContactForm from '../../components/common/ContactForm';
+import ContactForm from '../../components/common/contact-form/ContactForm';
 
 
 const TestimonialDetailsPage: React.FC = () => {

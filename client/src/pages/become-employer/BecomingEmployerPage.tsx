@@ -1,7 +1,7 @@
 import bli_egen_arbetsgivare from '../../assets/bli_egen_arbetsgivare.svg';
 import Testimonial from '../../components/common/testimonial/Testimonial';
 import ServiceAccordion from '../../pages/home/ServiceAccordion'; // Reusing your existing component
-import ContactForm from '../../components/common/ContactForm';
+import ContactForm from '../../components/common/contact-form/ContactForm';
 import styles from './BecomingEmployerPage.module.scss';
 import { useServices } from '../../hooks/useServices';
 import { NavLink } from 'react-router-dom';

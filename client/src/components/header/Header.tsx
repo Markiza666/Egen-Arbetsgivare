@@ -55,7 +55,10 @@ const Header: React.FC = () => {
                     {!isMobile && (
                         <nav className={styles.secondaryNav}>
                             <NavLink to="/om-oss">Om oss</NavLink>
-                            <NavLink to="/kontakt">Kontakta oss</NavLink>
+                            <NavLink to="/kontakt" 
+                            className={({ isActive }) => isActive ? styles.active : ''}>
+                                Kontakt
+                            </NavLink>
                         </nav>
                     )}
                 </div>
