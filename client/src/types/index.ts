@@ -104,3 +104,8 @@ export interface TestimonialFormData {
     rating: number;
     comment: string;
 }
+
+export interface FaqItem {
+    q: string;
+    a: string;
+}
