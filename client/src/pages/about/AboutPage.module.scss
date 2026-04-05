@@ -1,0 +1,105 @@
+@use '../../styles/variables' as v;
+        
+h2 {
+    font: v.$font-h2;
+    text-align: left;
+}
+
+.aboutContainer {
+    max-width: v.$container-max-width;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    .breadcrumbs {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+
+        .nav {
+            font: v.$font-breadcrumbs;
+            text-decoration-line: none;
+        }
+
+        span {
+            font: v.$font-breadcrumbs;
+            color: v.$primary-color;
+            &::before {
+                content: '→';
+                margin-right: 4px;
+                color: #7d7d7d;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .heroSection {
+        margin-bottom: 2rem;
+
+        .lead {
+            font-size: 1.25rem;
+            opacity: 0.8;
+        }
+    }
+
+    .infoGrid {
+        display: grid;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        overflow: hidden;
+
+        @media (min-width: 768px) {
+            grid-template-columns: 1fr 1fr; 
+            gap: clamp(2rem, 5vw, 5rem);
+            min-width: 0;
+            overflow-wrap: break-word;
+        }
+
+        .topSection {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .textBlock {
+                .p {
+                    color: v.$primary-color;
+                    margin: 0;
+                    word-wrap: break-word;
+                }
+            }
+
+            .videoSection {
+                text-align: center;
+                border-radius: v.$border-radius;
+
+                .videoWrapper {
+                    position: relative;
+                    max-width: 800px;
+                    margin: 2rem auto 0;
+                    cursor: pointer;
+
+                    img {
+                        width: 100%;
+                        border-radius: 8px;
+                    }
+                }
+            }
+        }
+
+        .bottomSection {
+            .ctaSection {
+                margin: 0 auto 2rem;
+                max-width: 400px;
+
+                .formWrapper {
+                    margin-top: 2rem;
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
