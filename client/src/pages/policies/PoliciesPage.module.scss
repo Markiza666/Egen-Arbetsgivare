@@ -1,0 +1,77 @@
+@use '../../styles/variables' as v;
+
+.policiesContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    line-height: 1.6;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        max-width: v.$container-max-width;
+    }
+
+    .breadcrumbs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        font: v.$font-breadcrumbs;
+
+        .nav {
+            text-decoration: none;
+            color: v.$primary-color;
+        }
+
+        span::before {
+            content: '→';
+            margin: 0 0.5rem;
+            color: #ccc;
+        }
+    }
+
+    .header {
+        margin-bottom: 1rem;
+        h2 {
+            font: v.$font-h2;
+            color: v.$text-color;
+            margin-bottom: 1rem; }
+        .intro { font-size: 1.2rem; color: #555; }
+    }
+
+    .policySection {
+        margin-bottom: 1rem;
+        
+        h3 { 
+            font: v.$font-h3;
+            text-align: left;
+            color: v.$text-color;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: #333;
+            max-width: 65ch;
+        }
+    }
+
+    .divider {
+        border: 0;
+        border-top: 1px solid #bebebe;
+        margin: 1rem 0;
+    }
+
+    .policyFooter {
+        margin: 2rem 0;
+        padding: 2rem;
+        background-color: #f9f9f9;
+        border-radius: v.$border-radius;
+        text-align: left;
+
+        a {
+            color: v.$primary-color;
+            font-weight: bold;
+            text-decoration: none;
+            &:hover { text-decoration: underline; }
+        }
+    }
+}

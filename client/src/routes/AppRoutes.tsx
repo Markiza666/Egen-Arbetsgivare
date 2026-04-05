@@ -21,6 +21,7 @@ import TestimonialDetailsPage from '../pages/testimonialPage/TestimonialDetailsP
 import AboutAssistancePage from '../pages/about-assistance/AboutAssistancePage';
 import ContactPage from '../pages/contact/ContactPage';
 import AboutPage from '../pages/about/AboutPage';
+import PoliciesPage from '../pages/policies/PoliciesPage';
 
 const PagePlaceholder: React.FC<{ title: string }> = ({ title }) => (
     <div className={styles.pagePlaceholder}>
@@ -45,6 +46,7 @@ const AppRoutes: React.FC = () => {
                 <Route path="/tjanster" element={<ServicesPage />} />
                 <Route path="/bli-egen-arbetsgivare" element={<BecomingEmployerPage />} />
                 <Route path="/steg-for-steg" element={<RegistrationGuide />} />
+                <Route path="/policies" element={<PoliciesPage />} />
                 <Route path="*" element={<PagePlaceholder title="404 - Sidan hittades inte" />} />
             </Route>
         </Routes>
