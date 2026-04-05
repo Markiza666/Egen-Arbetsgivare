@@ -110,7 +110,6 @@ const Header: React.FC = () => {
                     <NavLink to="/bli-egen-arbetsgivare">Bli egen arbetsgivare</NavLink>
                     <NavLink to="/vara-kunder">Våra kunder</NavLink>
                     <NavLink to="/faq">Frågor och svar</NavLink>
-                    <NavLink to="/nyheter">Nyheter</NavLink>
                 </nav>
             </div>
         </header>

@@ -58,10 +58,9 @@ const Footer: React.FC = () => {
                     <ul>
                         <li><NavLink to="/personlig-assistans">Personlig assistans</NavLink></li>
                         <li><NavLink to="/bli-egen-arbetsgivare">Bli egen arbetsgivare</NavLink></li>
-                        <li><NavLink to="/våra-kunder">Egna arbetsgivarnas berättelser</NavLink></li>
+                        <li><NavLink to="/vara-kunder">Våra kunder</NavLink></li>
                         <li><NavLink to="/faq">Frågor och svar</NavLink></li>
                         <li><NavLink to="/om-oss">Om oss</NavLink></li>
-                        <li><NavLink to="/nyheter">Nyheter</NavLink></li>
                         <li><NavLink to="/kontakt">Kontakta oss</NavLink></li>
                     </ul>
                 </section>
@@ -81,8 +80,7 @@ const Footer: React.FC = () => {
             <hr />
 
             <div className={styles.footerPolicyLinks}>
-                <NavLink to="/policies">Våra policies</NavLink>
-                <NavLink to="/tillganglighet">Tillgänglighet</NavLink>
+                <NavLink to="/policies" className={styles.policy}>Våra policies</NavLink>
             </div>
 
             <hr />
