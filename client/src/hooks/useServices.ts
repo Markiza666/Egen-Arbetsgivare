@@ -8,17 +8,18 @@ import type { RegistrationStep, ServiceItem } from '../types';
  */
 export const useServices = () => {
     const [services, setServices] = useState<ServiceItem[]>([]);
+    const [assistanceProviders, setAssistanceProviders] = useState<ServiceItem[]>([]);
     const [registrationSteps, setRegistrationSteps] = useState<RegistrationStep[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Simulate fetching data from an API with static data for now
-        const fetchServices = () => {
-            const data: ServiceItem[] = [
+        const fetchAllData = () => {
+            const mainServices: ServiceItem[] = [
                 {
                     id: '1',
                     title: 'Personlig assistans',
-                    path: '/personlig assistans',
+                    path: '/personlig-assistans',
                     description: 'Vi erbjuder trygg och professionell assistans där du som kund står i centrum. Vi sköter allt det administrativa så att du kan fokusera på ditt liv.',
                     features: ['Matchning av assistenter', 'Juridisk hjälp vid ansökan', 'Dygnet runt-support']
                 },
@@ -45,6 +46,37 @@ export const useServices = () => {
                 }
             ];
 
+            const providers: ServiceItem[] = [
+                {
+                    id: 'kommun',
+                    title: 'Kommun',
+                    path: '/vara-kunder',
+                    description: 'Att anlita kommunen innebär att det offentliga sköter allt. Det är tryggt men ger begränsat inflytande över vem som anställs.',
+                    features: ['Offentlig regi', 'Trygghet', 'Begränsat inflytande']
+                },
+                {
+                    id: 'privat-foretag',
+                    title: 'Privat företag',
+                    path: '/steg-for-steg',
+                    description: 'Företaget står på din sida gentemot myndigheter. Du kan ofta påverka löner, men bör kontrollera transparensen i avtalet.',
+                    features: ['Juridiskt stöd', 'Lönepåslag', 'Olika transparens']
+                },
+                {
+                    id: 'brukarkooperativ',
+                    title: 'Brukarkooperativ',
+                    path: '/om-oss',
+                    description: 'Ägs och styrs av medlemmarna utan vinstintresse. Allt överskott går tillbaka till assistansen.',
+                    features: ['Icke-vinstdrivande', 'Medlemsstyrt', 'Hög kontroll']
+                },
+                {
+                    id: 'egen-arbetsgivare-detalj',
+                    title: 'Egen arbetsgivare',
+                    path: '/bli-egen-arbetsgivare',
+                    description: 'Maximal frihet. Du är själv arbetsgivare och har full kontroll över din budget och personal.',
+                    features: ['Full makt', 'Egen budget', 'Vi sköter adm']
+                }
+            ];
+
             // New data for registration steps
             const stepsData: RegistrationStep[] = [
                 {
@@ -61,14 +93,15 @@ export const useServices = () => {
                 }
             ];
             
-            setServices(data);
+            setServices(mainServices);
+            setAssistanceProviders(providers);
             setRegistrationSteps(stepsData);
             setLoading(false);
         };
 
-        fetchServices();
+        fetchAllData();
     }, []);
 
     // Updated return to include registrationSteps
-    return { services, registrationSteps, loading };
+    return { services, assistanceProviders, registrationSteps, loading };
 };
