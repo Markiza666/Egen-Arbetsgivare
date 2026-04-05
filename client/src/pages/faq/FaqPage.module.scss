@@ -1,0 +1,103 @@
+@use '../../styles/variables' as v;
+
+.faqContainer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        max-width: v.$container-max-width;
+        padding: 0 1rem 1rem;
+    }
+
+    .breadcrumbs {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        padding: 0 0 1rem 1rem;
+
+        .nav {
+            font: v.$font-breadcrumbs;
+            text-decoration-line: none;
+        }
+
+        span {
+            font: v.$font-breadcrumbs;
+            color: v.$primary-color;
+            &::before {
+                content: '→';
+                margin-right: 4px;
+                color: #7d7d7d;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .header {
+        padding: 0 1rem;
+        margin-bottom: 1rem;
+        text-align: left;
+
+        h2 {
+            font: v.$font-h2;
+            margin-bottom: 1rem;
+            color: v.$text-color;
+        }
+
+        p {
+            font: v.$font-text;
+            color: v.$text-color;
+        }
+    }
+
+    .faqGrid {
+        display: grid;
+        grid-template-columns: 1fr; // Single column on mobile
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: 1fr 1fr; // Two columns on desktop
+        }
+
+        .answer {
+            padding: 1rem;
+            background-color: v.$white;
+            border-radius: 2px;
+            line-height: 1.5;
+        }
+    }
+
+    .contactSection {
+        margin-top: 1.5rem;
+        padding: 2rem;
+        background-color: v.$secondary-color;
+        color: v.$text-color;
+        border-radius: v.$border-radius;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        @media (min-width: 900px) {
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+        .contactText {
+            h3 {
+                font: v.$font-h3;
+                margin-bottom: 1rem;
+                color: v.$text-color;
+            }
+        }
+
+        .formWrapper {
+            background: v.$white;
+            padding: 2rem;
+            border-radius: v.$border-radius;
+            color: v.$text-color;
+        }
+    }
+}
