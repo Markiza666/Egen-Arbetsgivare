@@ -10,6 +10,11 @@ A modern full-stack web application designed to simplify the process of becoming
 - **State Management:** Ready for robust data handling with Redux Toolkit.
 - **Testing Suite:** Unit and integration tests powered by Vitest.
 
+## 📊 Project Status
+- **Frontend:** 100% Unit & Integration test coverage.
+- **Backend:** Initial API structure and database integration complete.
+- **Accessibility:** Fully WCAG 2.1 compliant (AA level).
+
 ## 🛠 Tech Stack
 
 ### Frontend (Client)
@@ -28,6 +33,28 @@ A modern full-stack web application designed to simplify the process of becoming
 - **Nodemailer** (Automated email services)
 - **Express-Validator** & **Helmet** (Input validation and security headers)
 - **Morgan** (HTTP request logging)
+
+### Configuration (.env)
+Create a `.env` file in the **server** directory with the following variables:
+```text
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+```
+
+## 📜 Available Scripts
+
+### Client
+- `npm run dev`: Starts the Vite development server.
+- `npm run build`: Builds the production-ready application.
+- `npm test`: Runs the Vitest suite.
+- `npm run test:coverage`: Generates a full Vitest coverage report.
+
+### Server
+- `npm run dev`: Starts the server with `tsx` watch mode.
+- `npm start`: Runs the compiled production server.
+- `npm test`: Runs backend integration and unit tests.
 
 ### Testing & Quality
 - **Vitest** (Fast unit testing and benchmarking)
@@ -83,6 +110,14 @@ npm run dev
 ## 🧪 Testing
 
 Both the client and server use Vitest. To run the test suites, navigate to the respective directory and run:
+
+1. Run Standard Tests
+To run the test suite normally (or in watch mode):
 ```bash
 npm test
+```
+2. Generate Coverage Report
+To generate the full coverage report (the one that shows 100% coverage):
+```bash
+npm run test:coverage
 ```
