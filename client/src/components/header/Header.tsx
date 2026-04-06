@@ -32,12 +32,21 @@ const Header: React.FC = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const { searchQuery, setSearchQuery } = useSearch();
 
+    // DEFINE DUMMY SEARCH SUGGESTIONS (As per AC requirements)
+    const dummySuggestions = [
+        "Hur blir jag egen arbetsgivare?",
+        "Vad kostar personlig assistans?",
+        "Lediga jobb som personlig assistent",
+        "Assistansersättning regler",
+        "Kontaktuppgifter till Egen Arbetsgivare"
+    ];
+
     /**
      * Handles the search submission.
      * Redirects the user to the FAQ page to see the filtered results.
      */
-    const handleSearchSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSearchSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+        event.preventDefault();
         // Only navigate if there is an actual search query
         if (searchQuery.trim() !== "") {
             navigate('/faq'); // Redirect to FAQ page
@@ -104,15 +113,28 @@ const Header: React.FC = () => {
                                     <span>{isSearchOpen ? 'Stäng' : 'Sök'}</span>
                                 </Button>
                             ) : (
-                                /* DESKTOP SEARCH FORM */
+
+                                /* SEARCH FORM */
                                 <form className={styles.searchFieldDesktop} onSubmit={handleSearchSubmit}>
-                                    <input 
-                                        type="text" 
-                                        placeholder="Sök..." 
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                    />
-                                    <Button variant="primary" type="submit">
+                                    <div className={styles.inputSuggestionsWrapper}>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Sök..." 
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                        />
+                                        
+                                        {/* AUTOCOMPLETE LIST */}
+                                        {searchQuery.length > 2 && (
+                                            <ul className={styles.suggestionsList}>
+                                                {dummySuggestions.map(suggestion => (
+                                                    <li key={suggestion}>{suggestion}</li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+
+                                    <Button variant="primary" type="submit" className={styles.search}>
                                         <Search size={18} />
                                         <span>SÖK</span>
                                     </Button>
@@ -121,17 +143,27 @@ const Header: React.FC = () => {
                         </div>
                     </div>
                     
-                    {/* MOBILE SEARCH FORM */}
+                    {/* MOBILE SEARCH FORM WITH AUTOCOMPLETE */}
                     {isMobile && isSearchOpen && (
                         <form className={styles.mobileSearchInput} onSubmit={handleSearchSubmit}>
                             <div className={styles.inputWrapper}>
-                                <input 
-                                    type="text" 
-                                    autoFocus
-                                    placeholder="Vad letar du efter?" 
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                />
+                                <div className={styles.mobileInputSuggestionsWrapper}>
+                                    <input 
+                                        type="text" 
+                                        autoFocus
+                                        placeholder="Vad letar du efter?" 
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                    />
+                                    {searchQuery.length > 2 && (
+                                        <ul className={styles.suggestionsList}>
+                                            {dummySuggestions.map(suggestion => (
+                                                <li key={suggestion}>{suggestion}</li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+
                                 <Button variant="primary" type="submit">
                                     <span>SÖK</span>
                                 </Button>
