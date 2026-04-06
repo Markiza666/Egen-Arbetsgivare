@@ -1,21 +1,16 @@
-/**
- * Header Component
- * * The main site navigation and branding area.
- * Responsibilities:
- * - Renders primary navigation links using React Router NavLink.
- * - Includes accessibility tools (Listen, Easy-read, Language).
- * - Manages mobile menu state and responsive layout shifts (Desktop vs Mobile).
- * - Implements a body-scroll lock when the mobile overlay is active.
- */
 import React, { useState, useEffect } from 'react';
-import { Menu, Search } from 'lucide-react';  // Icons for accessibility and menu
-import { NavLink } from 'react-router-dom'; // Accessibility (A11y): NavLink also adds aria-current="page" to the active link, which helps screen readers tell the user where they are.
+import { Menu, Search, X } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/Logo.svg';
 import styles from './Header.module.scss';
 import MenuMobile from '../menu/MenuMobile';
 import AccessibilityBar from './AccessibilityBar';
 import Button from '../common/button/Button';
+import { useSearch } from '../../hooks/useSearch';
 
+/**
+ * Custom hook to track window size and determine if view is mobile.
+ */
 const useWindowSize = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -31,10 +26,32 @@ const useWindowSize = () => {
 const Header: React.FC = () => {
     const isMobile = useWindowSize();
 
-    // Define state for the menu (for mobile)
+    const navigate = useNavigate();
+    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const { searchQuery, setSearchQuery } = useSearch();
 
-    // Lock body scroll when mobile menu is open
+    /**
+     * Handles the search submission.
+     * Redirects the user to the FAQ page to see the filtered results.
+     */
+    const handleSearchSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Only navigate if there is an actual search query
+        if (searchQuery.trim() !== "") {
+            navigate('/faq'); // Redirect to FAQ page
+        }
+        
+        if (isMobile) {
+            setIsSearchOpen(false); // Close the mobile search bar after searching
+        }
+    };
+
+    /**
+     * Accessibility: Lock body scroll when the mobile menu is open 
+     * to prevent background scrolling.
+     */
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -45,66 +62,85 @@ const Header: React.FC = () => {
 
     return (
         <header className={styles.siteHeader}>
-            {/* TOP BAR - Accessibility and Secondary links */}
-            {/* We place the AccessibilityBar here. On Mobile, our CSS will move this below the Main Header.
-            */}
+            {/* --- ACCESSIBILITY & SECONDARY NAV --- */}
             <div className={styles.topBar}>
                 <div className={styles.topBarContainer}>
                     <AccessibilityBar /> 
-                    
                     {!isMobile && (
                         <nav className={styles.secondaryNav}>
                             <NavLink to="/om-oss">Om oss</NavLink>
-                            <NavLink to="/kontakt" 
-                            className={({ isActive }) => isActive ? styles.active : ''}>
-                                Kontakt
-                            </NavLink>
+                            <NavLink to="/kontakt">Kontakt</NavLink>
                         </nav>
                     )}
                 </div>
             </div>
 
-            {/* Main Header */}
+            {/* --- MAIN NAVIGATION AREA --- */}
             <div className={styles.mainHeader}>
                 <div className={styles.mainHeaderContainer}>
+                    
+                    {/* Row 1: Menu Button, Logo, and Search Toggle */}
                     <div className={styles.headerTopRow}>
-
-                        {/* Menu button (Mobile) */}
                         {isMobile && (
-                            <Button variant="menu" onClick={() => setIsMenuOpen(true)}>
-                                <Menu size={24} />
-                                <span>Meny</span>
-                            </Button>
+                            <>
+                                <Button variant="menu" onClick={() => setIsMenuOpen(true)}>
+                                    <Menu size={24} />
+                                    <span>Meny</span>
+                                </Button>
+                                {/* This component handles the actual mobile menu overlay */}
+                                <MenuMobile isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+                            </>
                         )}
 
-                        {/* Mobile Menu Component */}
-                        <MenuMobile isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-
                         <NavLink to="/" className={styles.logo}>
-                            <img src={Logo} alt="Egen Arbetsgivare Logotyp" />
+                            <img src={Logo} alt="Egen Arbetsgivare Logo" />
                             <span className={styles.logoText}>Egen Arbetsgivare</span>
                         </NavLink>
                         
-                        {/* Search field */}
                         <div className={styles.headerActions}>
                             {isMobile ? (
-                                <Button variant="menu">
-                                    <Search size={24} />
-                                    <span>Sök</span>
+                                <Button variant="menu" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+                                    {isSearchOpen ? <X size={24} /> : <Search size={24} />}
+                                    <span>{isSearchOpen ? 'Stäng' : 'Sök'}</span>
                                 </Button>
                             ) : (
-                                <form className={styles.searchFieldDesktop}>
-                                    <input type="text" placeholder="Sök..." />
+                                /* DESKTOP SEARCH FORM */
+                                <form className={styles.searchFieldDesktop} onSubmit={handleSearchSubmit}>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Sök..." 
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                    />
                                     <Button variant="primary" type="submit">
+                                        <Search size={18} />
                                         <span>SÖK</span>
                                     </Button>
                                 </form>
                             )}
                         </div>
                     </div>
+                    
+                    {/* MOBILE SEARCH FORM */}
+                    {isMobile && isSearchOpen && (
+                        <form className={styles.mobileSearchInput} onSubmit={handleSearchSubmit}>
+                            <div className={styles.inputWrapper}>
+                                <input 
+                                    type="text" 
+                                    autoFocus
+                                    placeholder="Vad letar du efter?" 
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                                <Button variant="primary" type="submit">
+                                    <span>SÖK</span>
+                                </Button>
+                            </div>
+                        </form>
+                    )}
                 </div>
 
-                {/* Desktop Navigation */}
+                {/* --- DESKTOP MAIN NAVIGATION --- */}
                 <nav className={styles.desktopNav}>
                     <NavLink to="/personlig-assistans">Personlig assistans</NavLink>
                     <NavLink to="/bli-egen-arbetsgivare">Bli egen arbetsgivare</NavLink>

@@ -47,35 +47,13 @@
             display: flex;
             padding: 1rem;
             gap: 1.5rem;
+
             a {
                 text-decoration: none;
                 color: v.$primary-color;
                 font: v.$font-text-link;
-                &:hover { 
-                    border-bottom: 2px solid v.$hover-color; 
-                }
-            }
-        }
-        .accessTools {
-            width: 100%;
-            display: flex;
-            gap: 1.5rem;
-            font: v.$font-accessibility;
-            
-            a {
-                background: none;
-                border: none;
-                color: v.$primary-color;
-                font: v.$font-accessibility;
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                cursor: pointer;
 
                 &:hover { 
-                    color: v.$hover-color;
-                    text-decoration: underline;
                     border-bottom: 2px solid v.$hover-color; 
                 }
             }
@@ -86,7 +64,6 @@
     .mainHeader {
         width: 100%;
         grid-area: main;
-        padding-bottom: .5rem;
 
         @media (min-width: 768px) {
             padding: 0;
@@ -100,104 +77,120 @@
             gap: 1rem;
 
             @media (min-width: 768px) {
-                flex-direction: row; // För desktop
+                flex-direction: row;
                 justify-content: space-between;
                 padding: 1rem;
             }
-        }
 
-        .headerTopRow {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-
-            @media (min-width: 768px) {
-                padding: 1rem 0;
-            }
-
-            // Button (Mobile)
-            .menuBtn, .searchBtn {
-                flex: 0 0 60px;
+            .headerTopRow {
                 display: flex;
-                flex-direction: column;
+                width: 100%;
+                justify-content: space-between;
                 align-items: center;
-                background: none;
-                border: none;
-                color: v.$primary-color;
-                font: v.$font-accessibility;
-                cursor: pointer;
-
-                span { 
-                    font: v.$font-span;
-                }
-            }
-            
-            .logo {
-                flex: 0 1 auto;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-decoration: none;
+                gap: 0.5rem;
 
                 @media (min-width: 768px) {
-                    flex: 1;
-                    justify-content: flex-start;
+                    padding: 1rem 0;
                 }
 
-                img {
-                    padding-left: 0;
-                    height: 40px;
+                .logo {
+                    flex: 0 1 auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
 
                     @media (min-width: 768px) {
-                        height: 50px;
+                        flex: 1;
+                        justify-content: flex-start;
+                    }
+
+                    img {
+                        padding-left: 0;
+                        height: 40px;
+
+                        @media (min-width: 768px) {
+                            height: 50px;
+                        }
+                    }
+
+                    .logoText {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        font: v.$font-logotype;
+                        color: v.$primary-color;
+                        padding-left: 0.8rem;
+
+                        @media (min-width: 768px) {
+                            font: v.$font-logotype-desktop
+                        }
                     }
                 }
 
-                .logoText {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    font: v.$font-logotype;
-                    color: v.$primary-color;
-                    padding-left: 0.8rem;
+                .headerActions {
+                    display: flex;
+                    justify-content: flex-end;
+                    flex: 0 0 auto;
+                }
 
-                    @media (min-width: 768px) {
-                        font: v.$font-logotype-desktop
+                .searchFieldDesktop {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    $search-height: 42px;
+
+                    input {
+                        height: $search-height;
+                        width: 220px;
+                        padding: 0 16px;
+                        border: .5px solid v.$primary-color;
+                        border-radius: 4px;
+                        font-size: 0.95rem;
+                        outline: none;
+                        transition: border-color 0.2s;
+
+                        &:focus {
+                            border-color: v.$primary-color;
+                        }
+
+                        &::placeholder {
+                            color: #aaa;
+                        }
                     }
                 }
             }
+        }
 
-            .headerActions {
-                display: flex;
-                justify-content: flex-end;
-                flex: 0 0 auto;
-            }
+        .mobileSearchInput {
+            width: 100%;
+            padding: 0.8rem 0;
+            border-top: 1px solid #f0f0f0;
+            // Animation for a smooth reveal
+            animation: slideDown 0.3s ease-out forwards;
 
-            .searchFieldDesktop {
+            .inputWrapper {
+                width: 100%;
                 display: flex;
-                align-items: center;
+                justify-content: center;
                 gap: 1rem;
-                $search-height: 42px;
 
                 input {
-                    height: $search-height;
-                    width: 220px;
-                    padding: 0 16px;
-                    border: .5px solid v.$primary-color;
-                    border-radius: 4px;
-                    font-size: 0.95rem;
+                    width: 100%;
+                    padding: 0.7rem 1rem;
+                    border: 2px solid v.$primary-color;
+                    border-radius: 8px;
+                    font-size: 1rem;
                     outline: none;
-                    transition: border-color 0.2s;
+                    box-sizing: border-box;
 
                     &:focus {
-                        border-color: v.$primary-color;
-                    }
-
-                    &::placeholder {
-                        color: #aaa;
+                        box-shadow: 0 0 8px rgba(v.$primary-color, 0.2);
                     }
                 }
+            }
+
+            @media (min-width: 768px) {
+                display: none; // Hide on desktop
             }
         }
     }
@@ -222,5 +215,17 @@
                 }
             }
         }
+    }
+}
+
+// Animation definition
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

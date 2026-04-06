@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import ServiceAccordion from '../home/ServiceAccordion'; // Assuming this is your accordion
 import ContactForm from '../../components/common/contact-form/ContactForm';
 import { useServices } from '../../hooks/useServices';
+import { useSearch } from '../../hooks/useSearch';
 
 /**
  * FaqPage Component
@@ -13,8 +14,21 @@ import { useServices } from '../../hooks/useServices';
 
 const FaqPage: React.FC = () => {
     const { faq, loading } = useServices();
+    const { searchQuery } = useSearch();
 
-    // 2. Handle loading state
+    /**
+     * DERIVED STATE: Filter the FAQ list based on the global search query.
+     * This happens automatically every time searchQuery changes in the Header.
+     */
+    const filteredFaq = faq.filter(item => {
+        const query = searchQuery.toLowerCase();
+        return (
+            item.q.toLowerCase().includes(query) || 
+            item.a.toLowerCase().includes(query)
+        );
+    });
+
+    // Handle loading state
     if (loading) {
         return (
             <main className={styles.faqContainer}>
@@ -32,20 +46,27 @@ const FaqPage: React.FC = () => {
 
             <header className={styles.header}>
                 <h2>Vanliga frågor och svar</h2>
-                <p>
-                    Det är mycket att tänka på, och vi har därför samlat ett antal viktiga frågor 
-                    och svar som vi ofta får gällande självbestämmande och assistansersättning.
-                </p>
+                {searchQuery && (
+                    <p className={styles.searchFeedback}>
+                        Visar resultat för: "<strong>{searchQuery}</strong>"
+                    </p>
+                )}
             </header>
 
             <section className={styles.faqGrid}>
-                {faq.map((item, index) => (
-                    <ServiceAccordion key={index} title={item.q}>
-                        <div className={styles.answer}>
-                            <p>{item.a}</p>
-                        </div>
-                    </ServiceAccordion>
-                ))}
+                {filteredFaq.length > 0 ? (
+                    filteredFaq.map((item, index) => (
+                        <ServiceAccordion key={index} title={item.q}>
+                            <div className={styles.answer}>
+                                <p>{item.a}</p>
+                            </div>
+                        </ServiceAccordion>
+                    ))
+                ) : (
+                    <div className={styles.noResults}>
+                        <p>Vi hittade inga svar som matchar din sökning.</p>
+                    </div>
+                )}
             </section>
 
             <section className={styles.contactSection}>
