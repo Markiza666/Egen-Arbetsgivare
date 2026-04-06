@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
             <hr />
 
             <div className={styles.footerBottom}>
-                <p>Copyright @ {currentYear}</p>
+                <p data-testid="footer-year">Copyright @ {currentYear}</p>
                 <p>Egen Arbetsgivare</p>
                 <p>Uppdaterad 2026-03-23</p>
             </div>

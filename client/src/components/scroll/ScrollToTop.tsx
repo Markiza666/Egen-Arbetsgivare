@@ -1,48 +1,51 @@
-/**
- * ScrollToTop Component
- * * This component handles the window scroll position during client-side navigation.
- * Since React Router doesn't automatically reset scroll position when the path changes,
- * this hook-based component ensures the user is always scrolled to the top (0, 0)
- * of the page upon entering a new route.
- */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styles from './ScrollToTop.module.scss';
 import Button from "../common/button/Button";
 
 const ScrollToTop = () => {
-    const [isVisible, setIsVisible] = useState(true);
+    // Calculate the initial state immediately.
+    // React executes this function only once during "mount".
+    const [isVisible, setIsVisible] = useState<boolean>(() => {
+        return typeof window !== 'undefined' && window.scrollY > 300;
+    });
 
-    // Show button when page is scorched down
-    const toggleVisibility = () => {
-        if (window.pageYOffset > 300) {
+    // Function to handle visibility based on scroll position
+    const toggleVisibility = useCallback((): void => {
+        if (window.scrollY > 300) {
             setIsVisible(true);
         } else {
             setIsVisible(false);
         }
-    };
-
-    // Set the top scroll behavior
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    };
+    }, []);
 
     useEffect(() => {
+        // Add listener for future scroll events.
         window.addEventListener("scroll", toggleVisibility);
+        
+        // We don't need to manually call toggleVisibility() here anymore, 
+        // since the correct initial value was already set in useState above.
+        
+        // Cleanup: remove the event listener on unmount
         return () => window.removeEventListener("scroll", toggleVisibility);
-    }, []);
+    }, [toggleVisibility]);
+
+    // Smooth scroll to the top of the document
+    const scrollToTop = (): void => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // Do not render the button if it's not supposed to be visible
+    if (!isVisible) return null;
 
     return (
         <div className={styles.scrollToTop}>
-            {isVisible && (
-                <Button variant="icon" 
+            <Button 
+                variant="icon" 
                 onClick={scrollToTop} 
-                aria-label="Scroll to top">
-                    <span>↑</span>
-                </Button>
-            )}
+                aria-label="Scroll to top"
+            >
+                <span>↑</span>
+            </Button>
         </div>
     );
 };
