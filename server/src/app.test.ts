@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, beforeEach, vi } from 'vitest';
 import request from 'supertest';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
@@ -9,14 +9,11 @@ import Testimonial from '../src/models/Testimonial';
 let mongoServer: MongoMemoryServer;
 
 beforeAll(async () => {
-    mongoServer = await MongoMemoryServer.create({
-        binary: {
-            version: '7.0.0' // Vi tvingar en stabil version
-        }
-    });
+    // Setup in-memory database
+    mongoServer = await MongoMemoryServer.create();
     const uri = mongoServer.getUri();
     await mongoose.connect(uri);
-}, 120000);
+});
 
 afterAll(async () => {
     await mongoose.disconnect();
@@ -117,8 +114,9 @@ describe('API Endpoints Coverage Blitz', () => {
             expect(res.status).toBe(500);
             expect(res.body.success).toBe(false);
         });
-    })
-    
+    });
+
+    // --- Force GET Errors for 100% Coverage ---
     describe('GET Error Handling', () => {
         it('should return 500 when GET /api/contact fails', async () => {
             // Mock Contact.find to throw an error
@@ -141,5 +139,5 @@ describe('API Endpoints Coverage Blitz', () => {
             expect(res.status).toBe(500);
             findSpy.mockRestore(); // Restore original behavior
         });
-    });;
+    });
 });
