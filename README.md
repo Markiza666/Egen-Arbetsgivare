@@ -10,6 +10,12 @@ A modern full-stack web application designed to simplify the process of becoming
 - **State Management:** Ready for robust data handling with Redux Toolkit.
 - **Testing Suite:** Unit and integration tests powered by Vitest.
 
+## 📊 Project Status
+**Code Coverage: 100%** > Both Frontend (Client) and Backend (Server) have achieved full test coverage across all statements, branches, and functions.
+- **Frontend:** 100% Unit & Integration test coverage.
+- **Backend:** 100% Integration test coverage with in-memory database testing.
+- **Accessibility:** Fully WCAG 2.1 compliant (AA level).
+
 ## 🛠 Tech Stack
 
 ### Frontend (Client)
@@ -28,6 +34,38 @@ A modern full-stack web application designed to simplify the process of becoming
 - **Nodemailer** (Automated email services)
 - **Express-Validator** & **Helmet** (Input validation and security headers)
 - **Morgan** (HTTP request logging)
+- **Supertest** (Fluent API for testing HTTP servers)
+- **MongoDB Memory Server** (In-memory database for isolated testing)
+
+### Configuration (.env)
+Create a `.env` file in the **server** directory with the following variables:
+```text
+| Variable      | Description                  | Default/Example                |
+| :------------ | :--- ----------------------- | :--- ------------------------- |
+| `PORT`        | The port the server runs on  | `5001`                         |
+| `MONGODB_URI` | Connection string to MongoDB | `mongodb://localhost:27017/db` |
+| `CLIENT_URL`  | The URL of your frontend     | `http://localhost:5173`        |
+| `JWT_SECRET`  | Secret key for encryption    | `your_random_string`           |
+```
+
+## 📜 Available Scripts
+
+You can run scripts either from the root directory (to manage both Client & Server) or navigate into each directory for granular control.
+
+### Root Directory
+- `npm test`: Runs all tests (Client & Server sequentially).
+- `npm run test:coverage`: **The Hero Script**. Runs coverage for both Client and Server sequentially and generates full reports.
+
+### Client Directory (/client)
+- `npm run dev`: Starts the Vite development server.
+- `npm run build`: Builds the production-ready application.
+- `npm test`: Runs the Vitest suite for frontend.
+- `npm run test:coverage`: Generates a full Vitest coverage report.
+
+### Server Directory (/server)
+- `npm run dev`: Starts the server with `tsx` watch mode.
+- `npm start`: Runs the compiled production server.
+- `npm test`: Runs backend integration and unit tests.
 
 ### Testing & Quality
 - **Vitest** (Fast unit testing and benchmarking)
@@ -39,15 +77,18 @@ A modern full-stack web application designed to simplify the process of becoming
 ## 📁 Project Structure
 
 ```text
-src/
-├── assets/         # Static assets (SVG, Images)
-├── components/     # Reusable UI components (Common, Header, Footer)
-├── data/           # Static content (e.g., registration steps)
-├── hooks/          # Custom React hooks
-├── pages/          # View components (Home, Registration, Services, etc.)
-├── routes/         # Routing configuration (AppRoutes.tsx)
-├── styles/         # Global styles and SCSS variables
-└── types/          # TypeScript definitions and interfaces
+Egen-Arbetsgivare/
+├── client/                 # Frontend (React + Vite)
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── pages/          # View components
+│   │   └── types/          # TS definitions
+├── server/                 # Backend (Express + Node)
+│   ├── src/
+│   │   ├── models/         # Mongoose schemas
+│   │   ├── routes/         # API endpoints
+│   │   └── app.ts          # Server entry point
 ```
 
 
@@ -81,8 +122,18 @@ npm run dev
 ```
 
 ## 🧪 Testing
+This project maintains a strict 100% coverage policy. Both the client and server use Vitest.
 
-Both the client and server use Vitest. To run the test suites, navigate to the respective directory and run:
+### Quick Start (Root)
+To verify the entire project's health in one command:
+
 ```bash
-npm test
+npm run test:coverage
 ```
+
+### Manual Verification
+If you prefer to run tests for a specific part:
+
+1. Navigate to ```\client``` or ```\server```.
+
+2. Run ```npm test``` or ```npm run test:coverage```.

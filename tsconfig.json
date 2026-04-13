@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "types": ["node", "vitest/globals"],
+        
+        /* Strictness & Quality */
+        "strict": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "noEmit": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        
+        /* Paths & Environment */
+        "jsx": "react-jsx",
+        "allowImportingTsExtensions": true,
+        "moduleDetection": "force"
+    },
+    "include": [
+        "client/src/**/*",
+        "server/src/**/*",
+        "client/vite.config.ts",
+        "server/vitest.config.ts"
+    ],
+    "exclude": ["node_modules", "dist"]
+}

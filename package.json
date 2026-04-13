@@ -1,17 +1,32 @@
 {
-  "name": "egen-arbetsgivare",
-  "version": "1.0.0",
-  "description": "Examensarbete",
-  "main": "index.js",
-  "scripts": {
-    "server": "tsx server/index.js",
-    "dev": "npm run dev --prefix client",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Markiza Eriksson",
-  "license": "ISC",
-  "devDependencies": {
-    "sass": "^1.98.0",
-    "tsx": "^4.21.0"
-  }
+    "name": "egen-arbetsgivare",
+    "version": "1.0.0",
+    "description": "Examensarbete",
+    "main": "index.js",
+    "scripts": {
+        "server": "tsx server/index.js",
+        "dev": "npm run dev --prefix client",
+        "test": "vitest --root client run && vitest --root server run",
+        "test:coverage": "vitest run --coverage --root client && vitest run --coverage --root server"
+    },
+    "author": "Markiza Eriksson",
+    "license": "ISC",
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.2",
+        "@types/node": "^25.6.0",
+        "@vitejs/plugin-react": "^6.0.1",
+        "@vitest/browser": "^4.1.4",
+        "@vitest/coverage-v8": "^4.1.4",
+        "jsdom": "^28.1.0",
+        "sass": "^1.98.0",
+        "tsx": "^4.21.0",
+        "vitest": "^4.1.4"
+    },
+    "vitest": {
+        "workspace": [
+            "client/vite.config.ts",
+            "server/vitest.config.ts"
+        ]
+    }
 }
