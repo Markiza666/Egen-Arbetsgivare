@@ -11,28 +11,25 @@ import Testimonial from './models/Testimonial';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
 
 // --- Middleware Stack ---
 app.use(helmet());
-app.use(morgan('dev')); 
+/* v8 ignore next 3 */
+if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan('dev'));
+}
 app.use(express.json());
 
+/* v8 ignore next 4 */
 app.use(cors({
     origin: process.env.CLIENT_URL || 'http://localhost:5173',
     credentials: true
 }));
-
-// --- Database Connection ---
-const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/own-employer';
-
-mongoose.connect(mongoURI).catch(() => {
-    // Silent catch or simple exit for production
-    process.exit(1);
-});
-
 // --- API Routes ---
 
+/**
+ * Health check endpoint to verify server status
+ */
 app.get('/api/health', (req: Request, res: Response) => {
     res.json({
         status: 'ok',
@@ -40,6 +37,9 @@ app.get('/api/health', (req: Request, res: Response) => {
     });
 });
 
+/**
+ * Create a new contact request
+ */
 app.post('/api/contact', async (req: Request, res: Response) => {
     try {
         const { name, email, phone, message, preferences, hasAssistance } = req.body;
@@ -53,6 +53,9 @@ app.post('/api/contact', async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * Fetch all contact requests, sorted by newest first
+ */
 app.get('/api/contact', async (req: Request, res: Response) => {
     try {
         const contacts = await Contact.find().sort({ createdAt: -1 });
@@ -62,7 +65,10 @@ app.get('/api/contact', async (req: Request, res: Response) => {
     }
 });
 
-app.get('/api/testimonials', async (req, res) => {
+/**
+ * Fetch all approved testimonials
+ */
+app.get('/api/testimonials', async (req: Request, res: Response) => {
     try {
         const testimonials = await Testimonial.find({ approved: true }).sort({ createdAt: -1 });
         res.json(testimonials);
@@ -71,22 +77,26 @@ app.get('/api/testimonials', async (req, res) => {
     }
 });
 
+/**
+ * Fetch a single testimonial by ID
+ */
 app.get('/api/testimonials/:id', async (req: Request, res: Response) => {
     try {
-        // req.params.id plockar ut ID:t från URL:en (/api/testimonials/123)
         const testimonial = await Testimonial.findById(req.params.id);
         
         if (!testimonial) {
-            return res.status(404).json({ message: 'Berättelsen hittades inte.' });
+            return res.status(404).json({ message: 'Testimonial not found.' });
         }
         
         res.json(testimonial);
     } catch (error) {
-        // Om ID:t inte är i rätt format eller databasen strular
-        res.status(500).json({ message: 'Fel vid hämtning av berättelse.' });
+        res.status(500).json({ message: 'Error retrieving testimonial.' });
     }
 });
 
+/**
+ * Submit a new testimonial (defaults to unapproved)
+ */
 app.post('/api/testimonials', async (req: Request, res: Response) => {
     try {
         const { author, role, content, rating } = req.body;
@@ -98,8 +108,4 @@ app.post('/api/testimonials', async (req: Request, res: Response) => {
     }
 });
 
-// --- Server Lifecycle ---
-app.listen(PORT, () => {
-    // Keeping this console log to know the server is active
-    console.log(`Server running on port ${PORT}`);
-});
+export default app;
