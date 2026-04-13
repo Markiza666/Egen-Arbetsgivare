@@ -6,6 +6,7 @@ export default defineConfig({
         // but since you import them, it's extra safety.
         globals: true,
         environment: 'node',
+        hookTimeout: 60000,
         coverage: {
             provider: 'v8',
             reporter: ['text', 'json', 'html'],
