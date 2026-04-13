@@ -9,9 +9,20 @@ interface VitestConfigExport extends UserConfig {
 }
 
 export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-  },
+    plugins: [react()],
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        coverage: {
+            provider: 'v8',
+            exclude: [
+                '**/node_modules/**',
+                '**/dist/**',
+                '**/*.svg',
+                '**/*.scss',
+                'src/main.tsx',
+                'src/vite-env.d.ts'
+            ]
+        },
+    },
 } as VitestConfigExport);

@@ -12,7 +12,7 @@ A modern full-stack web application designed to simplify the process of becoming
 
 ## 📊 Project Status
 - **Frontend:** 100% Unit & Integration test coverage.
-- **Backend:** Initial API structure and database integration complete.
+- **Backend:** 100% Integration test coverage with in-memory database testing.
 - **Accessibility:** Fully WCAG 2.1 compliant (AA level).
 
 ## 🛠 Tech Stack
@@ -33,14 +33,18 @@ A modern full-stack web application designed to simplify the process of becoming
 - **Nodemailer** (Automated email services)
 - **Express-Validator** & **Helmet** (Input validation and security headers)
 - **Morgan** (HTTP request logging)
+- **Supertest** (Fluent API for testing HTTP servers)
+- **MongoDB Memory Server** (In-memory database for isolated testing)
 
 ### Configuration (.env)
 Create a `.env` file in the **server** directory with the following variables:
 ```text
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
+| Variable      | Description                  | Default/Example                |
+| :------------ | :--- ----------------------- | :--- ------------------------- |
+| `PORT`        | The port the server runs on  | `5001`                         |
+| `MONGODB_URI` | Connection string to MongoDB | `mongodb://localhost:27017/db` |
+| `CLIENT_URL`  | The URL of your frontend     | `http://localhost:5173`        |
+| `JWT_SECRET`  | Secret key for encryption    | `your_random_string`           |
 ```
 
 ## 📜 Available Scripts

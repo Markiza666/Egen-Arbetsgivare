@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, test, expect, vi } from 'vitest';
+import { describe, test, expect, vi, beforeEach } from 'vitest';
 import { SearchProvider } from '../../context/SearchProvider';
 import Header from './Header';
 
@@ -15,7 +15,24 @@ vi.mock('lucide-react', () => ({
     ChevronDown: () => <span data-testid="icon-chevron" />
 }));
 
+const mockNavigate = vi.fn();
+
+vi.mock('react-router-dom', async () => {
+    const actual = await vi.importActual('react-router-dom');
+    return {
+        ...actual,
+        useNavigate: () => mockNavigate,
+    };
+});
+
 describe('Final Coverage Blitz', () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+        // Reset to desktop view as default before each test
+        Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1024 });
+        window.dispatchEvent(new Event('resize'));
+    });
+
     test('should achieve 100% by covering all edge cases', async () => {
         render(
             <SearchProvider>
@@ -70,5 +87,56 @@ describe('Final Coverage Blitz', () => {
         }
 
         expect(screen.getAllByText(/Egen Arbetsgivare/i).length).toBeGreaterThan(0);
+    });
+
+    test('should not navigate if search query is empty', async () => {
+        // FORCE DESKTOP VIEW
+        await act(async () => {
+            Object.defineProperty(window, 'innerWidth', { writable: true, value: 1024 });
+            window.dispatchEvent(new Event('resize'));
+        });
+
+        render(
+            <SearchProvider>
+                <MemoryRouter>
+                    <Header />
+                </MemoryRouter>
+            </SearchProvider>
+        );
+
+        // The field is now visible in desktop view
+        const searchInput = screen.getByPlaceholderText(/Sök.../i);
+        const searchForm = searchInput.closest('form');
+        
+        if (searchForm) {
+            fireEvent.submit(searchForm);
+            expect(mockNavigate).not.toHaveBeenCalled();
+        }
+    });
+
+    test('should handle desktop search submission', async () => {
+        // Set screen to desktop
+        await act(async () => {
+            Object.defineProperty(window, 'innerWidth', { value: 1024 });
+            window.dispatchEvent(new Event('resize'));
+        });
+
+        render(
+            <SearchProvider>
+                <MemoryRouter>
+                    <Header />
+                </MemoryRouter>
+            </SearchProvider>
+        );
+
+        const desktopInput = screen.getByPlaceholderText(/Sök.../i);
+        fireEvent.change(desktopInput, { target: { value: 'test' } });
+        
+        const desktopForm = desktopInput.closest('form');
+        if (desktopForm) {
+            fireEvent.submit(desktopForm);
+            // Verify that navigation was actually triggered
+            expect(mockNavigate).toHaveBeenCalledWith('/faq');
+        }
     });
 });
